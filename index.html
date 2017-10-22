@@ -5,24 +5,42 @@
 
     <!-- Firebase Reference -->
     <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>	
-    <!-- jQuery -->
+    <!-- jQuery --> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
 
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<script type="text/javascript" src="assets/js/logic.js"></script>
 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+  	<meta charset="UTF-8">
 </head>
 <body>
 
     <form id="search-form">
-        <input type="text" id="search-input">
-
-        <input id="search-topic" type="submit" value="Search">
+        <input type="text" id="search-input" placeholder="Type song lyrics">
+        <input id="search-button" type="submit" value="Search">
     </form>
+	
+	<br>
+
+    <div class="container" id="song-list">
+    	<div class="row">
+    		<div class="col-md-4">Song</div>
+    		<div class="col-md-4">Album</div>
+    		<div class="col-md-4">Artist</div>
+    	</div>
+    </div>
 
     <!-- Script -->
-	<script type="text/javascript">
+	<script>
+
+//****************************************************************************************************
+//FYI -- You will need this extension in Chrome to get API data while running file locally: 
+// https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en
+//****************************************************************************************************
 
 //Need variables to store inputs from users 
 
