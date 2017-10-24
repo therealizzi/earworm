@@ -1,6 +1,7 @@
  $(window).on( "load", function() { //make sure window has finished loading
 
     var lyrics;
+    var song;
     var songArray = [];
 
 
@@ -69,7 +70,7 @@
                 songArray.push(tempSongObj);
             }    
             
-            displaySongResults();   
+            displaySongResults();  
         
         });
                 
@@ -104,8 +105,54 @@
         console.log(lyrics);
 
         callMusixMatch();
-        
+        callLastFM(); 
+
     });
+
+    //this does not work!!!!!!!!!
+    // function callSpotify() {
+
+ 
+    //     var queryURL = "https://api.spotify.com/v1/search?q=pixies&type=track";                         
+    //     var accessToken = "BQBooImyjUp95kpspOCgGzH_o83AiEtVfbTY-rWEd_OPHEaKL5whQbfWO2ic1g6aN2jb3P1gnjRf1PvTu30_QBCJczorVjtSlJMjhA4Xovizq1wk6iVpvkgM8oU6xg7-CAZD9nf-h92-P0r5eLgOmogKMB5T9Jk";
+
+    //     $.ajax({
+    //         url: queryURL,
+    //         method: "GET",
+    //         headers: {
+    //             "Accept": "application/json",
+    //             "Authorization": "Bearer " + accessToken
+    //         }
+    //     }).done(function(response) {
+
+    //         console.log(JSON.stringify(reponse));
+    //     });
+        
+    //     };
+
+    function callLastFM() {
+        
+        song = "debaser";
+
+ //       replace spaces with + for API query string
+        if(song.indexOf(" ") > -1) {
+            song = song.split(" ").join("+");
+        }
+        var apiKey = "b4a92948f847abccb45b4c794b508dca";
+        var queryURL = "http://ws.audioscrobbler.com/2.0/?method=track.search&track=" + 
+                         song + "&api_key=" + apiKey + "&format=json";
+        
+//        console.log(queryURL);
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).done(function(response) {
+
+            console.log(JSON.stringify(response));
+        });
+        
+        };
 
 
 });
