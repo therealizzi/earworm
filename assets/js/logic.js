@@ -1,9 +1,11 @@
- $(window).on( "load", function() { //make sure window has finished loading
+// Laura's Code //
+
+$(window).on( "load", function() { //make sure window has finished loading
 
     var lyrics;
     var song;
     var songArray = [];
-
+    var globalArtist;
 
     function songObject(song, album, artist) { //object constructor for song Objects
         this.song = song;
@@ -72,6 +74,7 @@
 
             displaySongResults();
 
+            globalArtist = songArray[0].getArtist();
         });
 
     }
@@ -101,12 +104,12 @@
 
         //get the lyrics from the text box entry
         lyrics = $("#search-input").val().trim();
-        console.log(lyrics);
 
         callMusixMatch();
-        callLastFM();
 
     });
+
+// Israel's Code //
 
 //Need a function to display the map on the screen
 function initMap() {
@@ -210,6 +213,8 @@ function initMap() {
 
 // Raf's Code: //
 
+
+
         function requestMapLatLon (artist) {
 
           if(artist.indexOf(" ") > -1) {
@@ -227,13 +232,12 @@ function initMap() {
         for ( var i = 0; i < 10; i++){
             var lat = response[i].venue.latitude;
             var lon = response[i].venue.longitude;
-            console.log(lat);
-            console.log(lon);
+
         };
       });
   };
 
-            requestMapLatLon ("Katy Perry");
+            requestMapLatLon(globalArtist);
 
 // bryan's code
 
