@@ -235,4 +235,45 @@ function initMap() {
 
             requestMapLatLon ("Katy Perry");
 
+// bryan's code
+
+    var mySearch = function() {
+      $("#myInfo").html("");
+      var myArtist = $("#mySearcher").val().trim();
+      var myUrl = "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch="+ myArtist +" music&utf8=&format=json"
+      $.ajax({
+        url: myUrl,
+        method: "GET"
+      }).done(function(response){
+        var myLen = response.query.search.length; //not necessary
+        for (var i = 0; i < myLen; i++){
+          var myLookup = response.query.search[i]; 
+          var myTitle = myLookup.title;
+          var link = (myTitle).replace(/ /g,"_");
+          var tempAnchor = $("<a>");
+          tempAnchor.attr({
+            href: "https://en.wikipedia.org/wiki/"+link,
+            target: "_blank"
+          });
+          tempAnchor.html(myTitle);
+          $("#myInfo").append(tempAnchor);
+          $("#myInfo").append("<br />");
+          $("#myInfo").append(myLookup.snippet + "<br />");
+        }
+      });
+      $("#mySearcher").val("");
+    }
+
+    $(document).keypress(function(e) {
+          if ( e.keyCode === 13 && $("#mySearcher").val().trim() !== ""){
+            e.preventDefault();
+        mySearch();
+          }
+      });
+
+    $("#myTester").on("click", function(e){
+      e.preventDefault();
+      mySearch();
+    });
+
 });
