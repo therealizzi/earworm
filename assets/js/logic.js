@@ -73,8 +73,10 @@ $(window).on( "load", function() { //make sure window has finished loading
             }
 
             displaySongResults();
-
-            globalArtist = songArray[0].getArtist();
+            // Added this to make variable Global for Artist - Raf //
+            globalArtist = songArray[0].artist;
+            // Added function call to pull information for Global Arist Raf //
+           requestMapLatLon(globalArtist);
         });
 
     }
@@ -92,8 +94,8 @@ $(window).on( "load", function() { //make sure window has finished loading
             //add a row to display table for each song retrived
             $("#song-list").append("<div class='row'><div class='col-md-4'>" + tempSong + "</div><div class='col-md-4'>" +
                                     tempAlbum + "</div><div class='col-md-4'>" + tempArtist + "</div></div");
-
         }
+
     }
 
     //event listener on the search button
@@ -108,6 +110,38 @@ $(window).on( "load", function() { //make sure window has finished loading
         callMusixMatch();
 
     });
+
+
+
+// Raf's Code: //
+
+
+
+    function requestMapLatLon (bInTownSearch) {
+
+
+          var queryURL = "https://rest.bandsintown.com/artists/"+ bInTownSearch +"/events?app_id=Test"
+
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+
+      // After the data from the AJAX request comes back
+      .done(function(response) {
+
+        latLonResults = response.length
+        for ( var i = 0; i < latLonResults; i++){
+
+            var lat = response[i].venue.latitude;
+            var lon = response[i].venue.longitude;
+            var tickets = response[i].offers[0].url;
+
+            $("#tickets").append("<div class='col-md-12'> <a href=" + tickets + " target='_blank'>show " + [i] + "</a> </div>");
+
+        };
+      });
+    };
 
 // Israel's Code //
 
@@ -211,33 +245,6 @@ function initMap() {
 
 }
 
-// Raf's Code: //
-
-
-
-        function requestMapLatLon (artist) {
-
-          if(artist.indexOf(" ") > -1) {
-            artist = artist.split(" ").join("%20");
-        }
-          var queryURL = "https://rest.bandsintown.com/artists/"+artist+"/events?app_id=Test"
-
-      $.ajax({
-        url: queryURL,
-        method: "GET"
-      })
-
-      // After the data from the AJAX request comes back
-      .done(function(response) {
-        for ( var i = 0; i < 10; i++){
-            var lat = response[i].venue.latitude;
-            var lon = response[i].venue.longitude;
-
-        };
-      });
-  };
-
-            requestMapLatLon(globalArtist);
 
 // bryan's code
 
@@ -251,7 +258,7 @@ function initMap() {
       }).done(function(response){
         var myLen = response.query.search.length; //not necessary
         for (var i = 0; i < myLen; i++){
-          var myLookup = response.query.search[i]; 
+          var myLookup = response.query.search[i];
           var myTitle = myLookup.title;
           var link = (myTitle).replace(/ /g,"_");
           var tempAnchor = $("<a>");
