@@ -76,7 +76,8 @@ $(window).on( "load", function() { //make sure window has finished loading
             // Added this to make variable Global for Artist - Raf //
             globalArtist = songArray[0].artist;
             // Added function call to pull information for Global Arist Raf //
-           requestMapLatLon(globalArtist);
+            requestMapLatLon(globalArtist);
+            mySearch(globalArtist);
         });
 
     }
@@ -108,7 +109,7 @@ $(window).on( "load", function() { //make sure window has finished loading
         lyrics = $("#search-input").val().trim();
 
         callMusixMatch();
-
+        
     });
 
 
@@ -248,14 +249,16 @@ function initMap() {
 
 // bryan's code
 
-    var mySearch = function() {
+    var mySearch = function(myArtist) {
       $("#myInfo").html("");
-      var myArtist = $("#mySearcher").val().trim();
+      // myArtist = myArtist.replace(/ /g, "%20");
       var myUrl = "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch="+ myArtist +" music&utf8=&format=json"
+      
       $.ajax({
         url: myUrl,
         method: "GET"
       }).done(function(response){
+        console.log(response);
         var myLen = response.query.search.length; //not necessary
         for (var i = 0; i < myLen; i++){
           var myLookup = response.query.search[i];
@@ -272,19 +275,6 @@ function initMap() {
           $("#myInfo").append(myLookup.snippet + "<br />");
         }
       });
-      $("#mySearcher").val("");
     }
-
-    $(document).keypress(function(e) {
-          if ( e.keyCode === 13 && $("#mySearcher").val().trim() !== ""){
-            e.preventDefault();
-        mySearch();
-          }
-      });
-
-    $("#myTester").on("click", function(e){
-      e.preventDefault();
-      mySearch();
-    });
 
 });
