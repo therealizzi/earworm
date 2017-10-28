@@ -15,9 +15,9 @@
   };
 })();
 
+function initMap() {};
 // life saving code above ----- DO NOT DELETE //
 
-function initMap() {};
 
 // Laura's Code //
 
@@ -47,7 +47,6 @@ $(window).on( "load", function() { //make sure window has finished loading
            return this.artist;
         };
     };
-
 
     function callMusixMatch() {
 
@@ -119,9 +118,7 @@ $(window).on( "load", function() { //make sure window has finished loading
             $("#song-list").append("<div class='row'><div class='col-md-4'>" + tempSong + "</div><div class='col-md-4'>" +
                                     tempAlbum + "</div><div class='col-md-4'>" + tempArtist + "</div></div");
         }
-
     }
-
 
     //event listener on the search button
     $("#search-button").on("click", function(event) {
@@ -135,7 +132,6 @@ $(window).on( "load", function() { //make sure window has finished loading
         callMusixMatch();
         
     });
-
 
 // Raf's Code: //
     function requestMapLatLon (bInTownSearch) {
@@ -165,10 +161,8 @@ $(window).on( "load", function() { //make sure window has finished loading
             } else {
               tickets = false;
             }
-
     console.log(lat);
     console.log(lon);
-
         };
       });
     };
@@ -273,9 +267,8 @@ function initMap() {
     map: map,
     label: ":)",
     animation: google.maps.Animation.DROP
-  })
-
-}
+  });
+};
 
     //event listener on the search button
     $("#search-button").on("click", function(event) {
