@@ -39,7 +39,7 @@
     		margin-top:-500px;
     	}
 		
-    	#para02:hover .overlay, #para01:hover .overlay {
+    	/*#para02:hover .overlay, #para01:hover .overlay {
 			animation-name: slider;
 			animation-duration: 1s;
     		margin-top:0px;
@@ -61,7 +61,7 @@
 			animation-name: shadowfadeRev;
 			animation-duration: 1s;
 			box-shadow:5px 5px 20px 5px #111 inset;
-		}
+		}*/
 
     	@keyframes slider {
     		0% {margin-top:-500px;}
@@ -157,11 +157,14 @@
 	<div class="row" style="border:1px solid black">
 		<div id="para02" class="col s12 m12 l4 push-l8 maxHeight">
 			<!-- <div class="overlay"></div> -->
-			<div class="parallax-container">
-				<div class="parallax">
-					<img src="assets/images/maps.png">
-				</div>  <!-- <img src="assets/images/maps.png"> -->
-			</div>
+			<!-- <div class="parallax-container">
+				<div class="parallax"> -->
+					<div class="container" style="width:500px; height:500px;">
+				        <div id="map"></div>
+				    </div>
+					<!-- <img src="assets/images/maps.png"> -->
+				<!-- </div>  <img src="assets/images/maps.png">
+			</div> -->
 		</div>
 		<div id="tickets" class="col s12 m12 l8 pull-l4 pastMax">
 			<h2 class="header pull-l4">Tickets</h2>
@@ -172,10 +175,9 @@
 		<div class="parallax"><img src="assets/images/maps.png"></div>
 	</div> -->
 
-	<div class="container" style="width:500px; height:500px;">
-        <div style="float: left" id="map"> <!-- sstyle="float: left" -->
-        </div>
-    </div>
+	<!-- <div class="container" style="width:500px; height:500px;">
+	        <div id="map"></div>
+	    </div> -->
     <!-- Compiled and minified JavaScript -->
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 	<script>
