@@ -8,3 +8,16 @@
         margin: 0;
         padding: 0;
       }
+
+      .result-list {
+
+        cursor: pointer;
+
+      }
+      
+      .result-list:hover {
+        
+        background: LightBlue;
+      }
+
+     

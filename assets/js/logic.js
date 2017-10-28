@@ -69,7 +69,8 @@ $(window).on( "load", function() { //make sure window has finished loading
             method: "GET"
         }).done(function(response) {
 
-           // console.log(JSON.stringify(response));
+            //reset variables prior to new search;
+            resetSearch();
 
             //parse response so it is readable
             var songList = JSON.parse(response);
@@ -98,18 +99,41 @@ $(window).on( "load", function() { //make sure window has finished loading
             }
 
             displaySongResults();
+
             // Added this to make variable Global for Artist - Raf //
-            globalArtist = songArray[0].artist;
+            globalArtist = getFirstMatch();
+
             // Added function call to pull information for Global Arist Raf //
             requestMapLatLon(globalArtist);
+
             mySearch(globalArtist);
         });
     }
 
+    //empty prior search results array and globalArtist
+    function resetSearch() {
+      
+      songArray = [];
+      globalArtist = "";
+
+    }
+    
+    // Added function call to pull information for Global Arist Raf //
+    function getFirstMatch() {
+
+      var index = 0;
+
+      return songArray[index].artist;
+
+    }
+
     function displaySongResults() {
 
+        //clear prior search result
+        $("#song-list").empty();
+ 
         //loop through array of song objects
-        for (i = 0; i < songArray.length; i++) {
+        for (var i = 0; i < songArray.length; i++) {
 
             //getting data from song objects
             var tempSong = songArray[i].getSong();
@@ -117,10 +141,27 @@ $(window).on( "load", function() { //make sure window has finished loading
             var tempArtist = songArray[i].getArtist();
 
             //add a row to display table for each song retrived
-            $("#song-list").append("<div class='row'><div class='col-md-4'>" + tempSong + "</div><div class='col-md-4'>" +
-                                    tempAlbum + "</div><div class='col-md-4'>" + tempArtist + "</div></div");
+            $("#song-list").append("<tr class='result-list' value='" + i + "'><td>" + 
+                                    tempSong + "</td><td>" + tempAlbum + "</td><td>" + 
+                                    tempArtist + "</td></tr");
         }
-    };
+
+        // event listener for the results table
+        $(".result-list").on("click", function(event) {
+
+            //get the value(index) of the table row selected
+            var choice = $(this).attr("value");
+
+            //get the artist and make it global
+            globalArtist = songArray[choice].getArtist();
+
+            //call other functions
+            requestMapLatLon(globalArtist);
+            
+            mySearch(globalArtist);
+            
+        });
+    }
 
     //event listener on the search button
     $("#search-button").on("click", function(event) {
