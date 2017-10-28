@@ -256,7 +256,7 @@ function initMap() {
   var marker = new google.maps.Marker({
     position: concert1,
     map: map,
-    label: ":)",
+    label: "12",
     animation: google.maps.Animation.DROP
   })
 
