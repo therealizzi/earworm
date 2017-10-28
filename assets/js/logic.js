@@ -122,6 +122,21 @@ $(window).on( "load", function() { //make sure window has finished loading
 
     }
 
+
+    //event listener on the search button
+    $("#search-button").on("click", function(event) {
+
+        //prevent the search button from opening new page
+        event.preventDefault();
+
+        //get the lyrics from the text box entry
+        lyrics = $("#search-input").val().trim();
+
+        callMusixMatch();
+        
+    });
+
+
 // Raf's Code: //
     function requestMapLatLon (bInTownSearch) {
 
@@ -305,6 +320,4 @@ function initMap() {
         }
       });
     }
-
 });
-
