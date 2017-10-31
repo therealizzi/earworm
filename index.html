@@ -2,7 +2,8 @@
 <html>
 <head>
 	<title>Earworm</title>
-
+    
+    <meta charset="UTF-8">
     <!-- Firebase Reference -->
     <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
     <!-- jQuery -->
@@ -15,6 +16,9 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsTPnP5VeUbTo_BRvDJ9CTdolGIkbZfbE"></script>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gochi+Hand" rel="stylesheet"> 
     <!-- Stylesheet -->
      <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   	<meta charset="UTF-8">
@@ -25,15 +29,15 @@
     <br>
 
     <!-- Laura's Code -->
-        <div class="jumbotron">
+        <div>
                 <form id="search-form">
-                    <input type="text" id="search-input" placeholder="Type song lyrics">
+                    <input type="text" id="search-input" size="50" placeholder="Type lyrics, song title or artist">
                     <input id="search-button" type="submit" value="Search">
                 </form>
         </div>
     <table width="100%">
         <thead>
-            <tr>
+            <tr class="song-list-hdr">
                 <td width="30%">Song</td>
                 <td width="30%">Album</td>
                 <td width="30%">Artist</td>
@@ -43,6 +47,9 @@
         </tbody>
 
     </table>
+
+    <div id="lyric-sample"></div>
+
 
 
         <!-- Raf's Code -->

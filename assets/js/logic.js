@@ -23,159 +23,236 @@ function initMap() {};
 
 $(window).on( "load", function() { //make sure window has finished loading
 
-    var lyrics;
-    var song;
-    var songArray = [];
-    var globalArtist;
-    var lat =[];
-    var lon = [];
-    var date = [];
-    var city = [];
-    var response;
+  var lyrics;
+  var searchString;
+  var song;
+  var songArray = [];
+  var globalArtist;
+  var lat =[];
+  var lon = [];
+  var date = [];
+  var city = [];
+  var response;
+  var activeResult;
 
-    function songObject(song, album, artist) { //object constructor for song Objects
-        this.song = song;
-        this.album = album;
-        this.artist = artist;
+  function songObject(song, album, artist, id) { //object constructor for song Objects
+    this.song = song;
+    this.album = album;
+    this.artist = artist;
+    this.id = id
 
-        this.getSong = function() {
-           return this.song;
-        };
-
-        this.getAlbum = function () {
-           return this.album;
-        };
-
-        this.getArtist = function() {
-           return this.artist;
-        };
+    this.getSong = function() {
+       return this.song;
     };
 
-    function callMusixMatch() {
+    this.getAlbum = function () {
+       return this.album;
+    };
 
-        //replace spaces with + for API query string
-        if(lyrics.indexOf(" ") > -1) {
-            lyrics = lyrics.split(" ").join("+");
-        }
-
-        var apiKey = "67f5c5bdc18e9c5135509283dad3eab1";
-        var queryURL = "https://api.musixmatch.com/ws/1.1/track.search?format=json&q_lyrics=" +
-                         lyrics + "&quorum_factor=1&apikey=" + apiKey;
-
-//        console.log(queryURL);
-
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).done(function(response) {
-
-            //reset variables prior to new search;
-            resetSearch();
-
-            //parse response so it is readable
-            var songList = JSON.parse(response);
-
-            //set result count to the number of results returned (API returns max 10)
-            var resultCount = (songList.message.body.track_list).length;
-
-            //loop through the array of results returned
-            for (i = 0; i < resultCount; i++) {
-
-            //getting the info from API JSON and assigning to variables
-                var songTitle = songList.message.body.track_list[i].track.track_name;
-                console.log("Song Title-" + i + ":" + songTitle);
-
-                var albumTitle = songList.message.body.track_list[i].track.album_name;
-                console.log("Album Title-" + i + ":" + albumTitle);
-
-                var artistName = songList.message.body.track_list[i].track.artist_name;
-                console.log("Artist name-" + i + ":" + artistName);
-
-                //creating a song object to hold data
-                var tempSongObj = new songObject(songTitle,albumTitle,artistName);
-
-                //adding song object to array
-                songArray.push(tempSongObj);
-            }
-
-            displaySongResults();
-
-            // Added this to make variable Global for Artist - Raf //
-            globalArtist = getFirstMatch();
-
-            // Added function call to pull information for Global Arist Raf //
-            requestMapLatLon(globalArtist);
-
-            mySearch(globalArtist);
-        });
-    }
-
-    //empty prior search results array and globalArtist
-    function resetSearch() {
-      
-      songArray = [];
-      globalArtist = "";
-
-    }
+    this.getArtist = function() {
+       return this.artist;
+    };
     
-    // Added function call to pull information for Global Arist Raf //
-    function getFirstMatch() {
+    this.getID = function() {
+       return this.id;
+    };
+  };
 
-      var index = 0;
+  function callMusixMatch() {
 
-      return songArray[index].artist;
-
+    //replace spaces with + for API query string
+    if(searchString.indexOf(" ") > -1) {
+        searchString = searchString.split(" ").join("+");
     }
 
-    function displaySongResults() {
+    var apiKey = "67f5c5bdc18e9c5135509283dad3eab1";
+    // var queryURL = "https://api.musixmatch.com/ws/1.1/track.search?format=json&q_lyrics=" +
+    //                  lyrics + "&quorum_factor=1&apikey=" + apiKey;
+    var queryURL = "https://api.musixmatch.com/ws/1.1/track.search?format=json&q=" + searchString + 
+        "&f_lyrics_language=en&f_has_lyrics=1&s_track_rating=desc&quorum_factor=1&apikey=" + apiKey;
 
-        //clear prior search result
-        $("#song-list").empty();
- 
-        //loop through array of song objects
-        for (var i = 0; i < songArray.length; i++) {
 
-            //getting data from song objects
-            var tempSong = songArray[i].getSong();
-            var tempAlbum = songArray[i].getAlbum();
-            var tempArtist = songArray[i].getArtist();
 
-            //add a row to display table for each song retrived
-            $("#song-list").append("<tr class='result-list' value='" + i + "'><td>" + 
-                                    tempSong + "</td><td>" + tempAlbum + "</td><td>" + 
-                                    tempArtist + "</td></tr");
-        }
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).done(function(mxmresponse) {
 
-        // event listener for the results table
-        $(".result-list").on("click", function(event) {
+      //reset variables prior to new search;
+      resetSearch();
+      
+      //parse response so it is readable
+      var songList = JSON.parse(mxmresponse);
 
-            //get the value(index) of the table row selected
-            var choice = $(this).attr("value");
+      //set result count to the number of results returned (API returns max 10)
+      var resultCount = (songList.message.body.track_list).length;
 
-            //get the artist and make it global
-            globalArtist = songArray[choice].getArtist();
+      //loop through the array of results returned
+      for (i = 0; i < resultCount; i++) {
 
-            //call other functions
-            requestMapLatLon(globalArtist);
-            
-            mySearch(globalArtist);
-            
-        });
-    }
+      //getting the info from API JSON and assigning to variables
+        var songTitle = songList.message.body.track_list[i].track.track_name;
+        console.log("Song Title-" + i + ":" + songTitle);
 
-    //event listener on the search button
-    $("#search-button").on("click", function(event) {
+        var albumTitle = songList.message.body.track_list[i].track.album_name;
+        console.log("Album Title-" + i + ":" + albumTitle);
 
-        //prevent the search button from opening new page
-        event.preventDefault();
+        var artistName = songList.message.body.track_list[i].track.artist_name;
+        console.log("Artist name-" + i + ":" + artistName);
 
-        //get the lyrics from the text box entry
-        lyrics = $("#search-input").val().trim();
+        var trackID = songList.message.body.track_list[i].track.track_id;
+        console.log("Song Title-" + i + ":" + songTitle);
 
-        callMusixMatch();
-        requestMapLatLon();
-        initMap();
+        //creating a song object to hold data
+        var tempSongObj = new songObject(songTitle,albumTitle,artistName,trackID);
+
+        //adding song object to array
+        songArray.push(tempSongObj);
+      }
+
+      displaySongResults();
+
+      //delay call to prevent server 429 error (too many, too fast)
+      setTimeout(getLyrics, 1000, 0);
+
+      // Added this to make variable Global for Artist - Raf 
+      globalArtist = getMatch(0); // first result
+
+      requestMapLatLon(globalArtist);
+
+      mySearch(globalArtist);
+
+
     });
+
+  }
+
+  //empty prior search results array and globalArtist
+  function resetSearch() {
+    
+    songArray = [];
+    globalArtist = "";
+
+  }
+  
+  // Added function call to pull information for Global Arist Raf //
+  function getMatch(index) {
+
+    var choice = index;
+
+    return songArray[choice].getArtist();
+
+  }
+
+  function displaySongResults() {
+
+    //clear prior search result
+    $("#song-list").empty();
+
+    //show table header
+    $("#song-list-hdr").css("visibility", "visible");
+
+    //loop through array of song objects
+    for (var i = 0; i < songArray.length; i++) {
+
+      //getting data from song objects
+      var tempSong = songArray[i].getSong();
+      var tempAlbum = songArray[i].getAlbum();
+      var tempArtist = songArray[i].getArtist();
+
+      //add a row to display table for each song retrived
+      $("#song-list").append("<tr class='result-list' value='" + i + "'><td>" + 
+                              tempSong + "</td><td>" + tempAlbum + "</td><td>" + 
+                              tempArtist + "</td></tr");
+      if (i === 0) {
+        
+        //show first result as active in table
+        $(".result-list").addClass("active");
+        
+        //saving the value of active element in global variable so can reset later
+        activeResult = i;
+      }
+    }
+          
+      // event listener for the results table
+      $(".result-list").on("click", function(event) {
+
+        //get the value(index) of the table row selected
+        var choice = $(this).attr("value");
+
+        //set the table row as active
+        $(this).addClass("active");
+
+        //get the current active row and make inactive
+        $(".result-list[value=" + activeResult + "]").removeClass("active");
+
+        //saving the value of active element in global variable so can reset later
+        activeResult = choice;
+
+        //get the artist and make it global
+        globalArtist = getMatch(choice);
+
+        //call to get lyrics for new selection
+        getLyrics(choice);
+
+        //call other API functions
+        requestMapLatLon(globalArtist);
+        
+        mySearch(globalArtist);
+        
+      });
+  }
+
+  function getLyrics(index) {
+    
+    var track_id = songArray[index].getID();
+    var apiKey = "67f5c5bdc18e9c5135509283dad3eab1";
+    var queryURL = "https://api.musixmatch.com/ws/1.1/track.lyrics.get?format=json&callback=callback&track_id="  
+                    + track_id + "&apikey=" + apiKey;
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).done(function(mxmresponse) {
+
+    var lyricSearch = JSON.parse(mxmresponse);
+
+    var trackLyrics = lyricSearch.message.body.lyrics.lyrics_body;
+    var mxmCopyright = lyricSearch.message.body.lyrics.lyrics_copyright;
+
+    //replace newline chars with breaks for display
+    if(trackLyrics.indexOf("\n") > -1) {
+        trackLyrics = trackLyrics.split("\n").join("<br>");
+    }
+
+    //cuts off lyrics before end of file warning
+    trackLyrics = trackLyrics.split("*", 1);
+
+    // display lyrics
+    $("#lyric-sample").html(trackLyrics);
+
+    });
+
+  }
+
+
+  //event listener on the search button
+  $("#search-button").on("click", function(event) {
+
+      //prevent the search button from opening new page
+      event.preventDefault();
+
+      //get the search string from the text box entry
+      searchString = $("#search-input").val().trim();
+
+      callMusixMatch();
+      
+      //clear search box
+      $("#search-input").val("");
+
+  });
+
+
 
 // Israel's Code //
 
