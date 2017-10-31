@@ -24,7 +24,7 @@ function initMap() {};
 
 // Laura's Code //
 
-$(window).on( "load", function() { //make sure window has finished loading
+$(window).on("load", function() { //make sure window has finished loading
 
   var lyrics;
   var searchString;
@@ -218,7 +218,6 @@ $(window).on( "load", function() { //make sure window has finished loading
 
         mySearch(globalArtist);
         
-        
       });
   }
 
@@ -269,7 +268,7 @@ $(window).on( "load", function() { //make sure window has finished loading
           searchString = $(this).val().trim();
           $(this).val("");  
         }
-      })
+      });
       
       callMusixMatch();
       
@@ -278,6 +277,7 @@ $(window).on( "load", function() { //make sure window has finished loading
 
   });
 
+  // Event listener for 'enter' keypress
   $(".search-input").keypress(function(e){
     console.log(e);
     if(e.keyCode == 13){
@@ -291,8 +291,7 @@ $(window).on( "load", function() { //make sure window has finished loading
           $(this).val("");
         }
 
-      })
-      
+      });
 
       callMusixMatch();
       
@@ -423,8 +422,8 @@ $(window).on( "load", function() { //make sure window has finished loading
     });
 
         for (i = 0; i < lat.length; i++){
-          console.log(lat[i])
-          console.log(lon[i])
+          // console.log(lat[i])
+          // console.log(lon[i])
 
           var icon = {
             url: 'http://www.clker.com/cliparts/U/T/s/x/w/E/mic-md.png',
@@ -438,6 +437,7 @@ $(window).on( "load", function() { //make sure window has finished loading
             title: city[i]+" "+date[i],
             animation: google.maps.Animation.DROP
           });
+          console.log(marker.map,": ",marker.position, "marker information")
         };
   };
 
@@ -449,6 +449,8 @@ $(window).on( "load", function() { //make sure window has finished loading
     lat = [];
     lon = [];
     $("#tickets").empty();
+    console.log(lat);
+    console.log(lon);
   }
 
   function requestMapLatLon (bInTownSearch) {
@@ -537,14 +539,11 @@ $(window).on( "load", function() { //make sure window has finished loading
       }
     })
   }
+  $(".brand-logo").on("click", function(){
+        //hide search page
+    $("#wrapper-init").css("display", "block");
 
-  // http://ws.audioscrobbler.com/2.0/
-
-  // Here are the details of your new API account.
-  // Application name  Coding Bootcamp Project - Music Search
-  // API key c3e14eca8563f82a1805f30ced79d395
-  // Shared secret ea1652b730b0fc639e61471a5d3e8441
-  // Registered to Engiineer
-
-
+    //show main page
+    $("#wrapper-main").css("display", "none");
+  })
 });
