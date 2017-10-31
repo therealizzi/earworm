@@ -255,144 +255,142 @@ $(window).on( "load", function() { //make sure window has finished loading
 
 
 
-// Israel's Code //
+  // Israel's Code //
 
-//Need a function to display the map on the screen
-function initMap() {
+  //Need a function to display the map on the screen
+  function initMap() {
 
-  // Styles a map in night mode.
-  var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 37.674, lng: -93.945},
-    zoom: 3,
-    styles: [
-      {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
-      {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
-      {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
-      {
-        featureType: 'administrative.locality',
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#d59563'}]
-      },
-      {
-        featureType: 'poi',
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#d59563'}]
-      },
-      {
-        featureType: 'poi.park',
-        elementType: 'geometry',
-        stylers: [{color: '#263c3f'}]
-      },
-      {
-        featureType: 'poi.park',
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#6b9a76'}]
-      },
-      {
-        featureType: 'road',
-        elementType: 'geometry',
-        stylers: [{color: '#38414e'}]
-      },
-      {
-        featureType: 'road',
-        elementType: 'geometry.stroke',
-        stylers: [{color: '#212a37'}]
-      },
-      {
-        featureType: 'road',
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#9ca5b3'}]
-      },
-      {
-        featureType: 'road.highway',
-        elementType: 'geometry',
-        stylers: [{color: '#746855'}]
-      },
-      {
-        featureType: 'road.highway',
-        elementType: 'geometry.stroke',
-        stylers: [{color: '#1f2835'}]
-      },
-      {
-        featureType: 'road.highway',
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#f3d19c'}]
-      },
-      {
-        featureType: 'transit',
-        elementType: 'geometry',
-        stylers: [{color: '#2f3948'}]
-      },
-      {
-        featureType: 'transit.station',
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#d59563'}]
-      },
-      {
-        featureType: 'water',
-        elementType: 'geometry',
-        stylers: [{color: '#17263c'}]
-      },
-      {
-        featureType: 'water',
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#515c6d'}]
-      },
-      {
-        featureType: 'water',
-        elementType: 'labels.text.stroke',
-        stylers: [{color: '#17263c'}]
-      }
-    ]
-  });
+    // Styles a map in night mode.
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: 37.674, lng: -93.945},
+      zoom: 3,
+      styles: [
+        {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+        {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+        {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+        {
+          featureType: 'administrative.locality',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#d59563'}]
+        },
+        {
+          featureType: 'poi',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#d59563'}]
+        },
+        {
+          featureType: 'poi.park',
+          elementType: 'geometry',
+          stylers: [{color: '#263c3f'}]
+        },
+        {
+          featureType: 'poi.park',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#6b9a76'}]
+        },
+        {
+          featureType: 'road',
+          elementType: 'geometry',
+          stylers: [{color: '#38414e'}]
+        },
+        {
+          featureType: 'road',
+          elementType: 'geometry.stroke',
+          stylers: [{color: '#212a37'}]
+        },
+        {
+          featureType: 'road',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#9ca5b3'}]
+        },
+        {
+          featureType: 'road.highway',
+          elementType: 'geometry',
+          stylers: [{color: '#746855'}]
+        },
+        {
+          featureType: 'road.highway',
+          elementType: 'geometry.stroke',
+          stylers: [{color: '#1f2835'}]
+        },
+        {
+          featureType: 'road.highway',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#f3d19c'}]
+        },
+        {
+          featureType: 'transit',
+          elementType: 'geometry',
+          stylers: [{color: '#2f3948'}]
+        },
+        {
+          featureType: 'transit.station',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#d59563'}]
+        },
+        {
+          featureType: 'water',
+          elementType: 'geometry',
+          stylers: [{color: '#17263c'}]
+        },
+        {
+          featureType: 'water',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#515c6d'}]
+        },
+        {
+          featureType: 'water',
+          elementType: 'labels.text.stroke',
+          stylers: [{color: '#17263c'}]
+        }
+      ]
+    });
 
-    for (i = 0; i < lat.length; i++){
-      console.log(lat[i])
-      console.log(lon[i])
+        for (i = 0; i < lat.length; i++){
+          console.log(lat[i])
+          console.log(lon[i])
 
-      var icon = {
-        url: 'http://www.clker.com/cliparts/U/T/s/x/w/E/mic-md.png',
-        scaledSize: new google.maps.Size(30,30)
-      };
+          var icon = {
+            url: 'http://www.clker.com/cliparts/U/T/s/x/w/E/mic-md.png',
+            scaledSize: new google.maps.Size(30,30)
+          };
 
-      var marker = new google.maps.Marker({
-        position: {lat:lat[i], lng:lon[i]},
-        map: map,
-        icon: icon,
-        title: city[i]+" "+date[i],
-        animation: google.maps.Animation.DROP
-  });
+          var marker = new google.maps.Marker({
+            position: {lat:lat[i], lng:lon[i]},
+            map: map,
+            icon: icon,
+            title: city[i]+" "+date[i],
+            animation: google.maps.Animation.DROP
+          });
+        };
   };
-};
 
-// Raf's Code: //
+  // Raf's Code: //
 
   //empty prior search results array
   function resetBITSearch() {
     
-        lat = [];
-        lon = [];
-        $("#tickets").empty();
-
+    lat = [];
+    lon = [];
+    $("#tickets").empty();
   }
 
-function requestMapLatLon (bInTownSearch) {
+  function requestMapLatLon (bInTownSearch) {
 
-      resetBITSearch();
+    resetBITSearch();
 
+    var queryURL = "https://rest.bandsintown.com/artists/"+ bInTownSearch +"/events?app_id=Test"
 
-      var queryURL = "https://rest.bandsintown.com/artists/"+ bInTownSearch +"/events?app_id=Test"
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    })
 
-  $.ajax({
-    url: queryURL,
-    method: "GET"
-  })
-
-  // After the data from the AJAX request comes back
-  .done(function(response) {
-    console.log(response, "response from Raf's");
-    latLonResults = response.length
-    for ( var i = 0; i < latLonResults; i++){
+    // After the data from the AJAX request comes back
+    .done(function(response) {
+      console.log(response, "response from Raf's");
+      latLonResults = response.length
+      for ( var i = 0; i < latLonResults; i++){
 
         var venueLat = response[i].venue.latitude;
         var venueLon = response[i].venue.longitude;
@@ -408,12 +406,12 @@ function requestMapLatLon (bInTownSearch) {
         } else {
           tickets = false;
         }
-    };
-        initMap()
-  });
-};
+      };
+      initMap()
+    });
+  };
 
-// bryan's code
+  // bryan's code
   var mySearch = function(myArtist) {
     $("#myInfo").html("");
     // myArtist = myArtist.replace(/ /g, "%20");
@@ -441,4 +439,5 @@ function requestMapLatLon (bInTownSearch) {
       }
     });
   }
+
 });
