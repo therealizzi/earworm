@@ -15,7 +15,9 @@
   };
 })();
 
+//google has to initiate maps prior to page load
 function initMap() {};
+
 // life saving code above ----- DO NOT DELETE //
 
 
