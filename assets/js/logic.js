@@ -238,7 +238,7 @@ $(window).on( "load", function() { //make sure window has finished loading
   }
 
 
-  //event listener on the search button
+  //event listener on the search button -- in search bar
   $("#search-button").on("click", function(event) {
 
       //prevent the search button from opening new page
@@ -254,7 +254,34 @@ $(window).on( "load", function() { //make sure window has finished loading
 
   });
 
+  //event listener on the search button -- on initial search page
+  $("#search-button-init").on("click", function(event) {
 
+      //prevent the search button from opening new page
+      event.preventDefault();
+
+      //get the search string from the text box entry
+      searchString = $("#search-initial").val().trim();
+
+      callMusixMatch();
+      
+      //clear search box
+      $("#search-initial").val("");
+
+      toggleWrappers();
+
+  });
+
+  function toggleWrappers() {
+
+    //hide search page
+    $("#wrapper-init").css("display", "none");
+
+    //show main page
+    $("#wrapper-main").css("display", "block");
+
+
+  }
 
   // Israel's Code //
 

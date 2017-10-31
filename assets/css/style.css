@@ -37,10 +37,9 @@ html, body {
 }
 
 #lyric-sample {
-  transform:rotate(345deg);
+  transform: rotate(345deg);
   text-align: center;
   padding: 50px;
-  padding-top: 35px;
   line-height: 1.5;
   font-family: 'Waiting for the Sunrise', cursive;
   /*font-family: 'Gochi Hand', cursive;*/
@@ -53,3 +52,10 @@ html, body {
   background-image: url("../images/ricepaper_v3_@2X.png");
 }
 
+#wrapper-init {
+  display: block;
+}
+
+#wrapper-main {
+  display: none;
+}

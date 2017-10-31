@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
-	<title>parallax test</title>
-	  <!-- Compiled and minified CSS -->
+<head>
+    <title>Earworm</title>
+    
+    <meta charset="UTF-8">
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- JavaScript -->
+    <script type="text/javascript" src="assets/js/logic.js"></script>
+    <!-- Gmaps -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsTPnP5VeUbTo_BRvDJ9CTdolGIkbZfbE"></script>
 
-
-
-	<!--Import Google Icon Font-->
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<!--Import materialize.css-->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-	<!-- gmaps -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsTPnP5VeUbTo_BRvDJ9CTdolGIkbZfbE"></script>
-    <!-- Fonts -->
+    <!-- Bootstrap.css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Materialize.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <!-- Google Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Gochi+Hand" rel="stylesheet">
-	<!--Let browser know website is optimized for mobile-->
+    <link href="https://fonts.googleapis.com/css?family=Gochi+Hand" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Stylesheet -->
+     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+ 	<!--Let browser know website is optimized for mobile-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<style>
 		.parallax-container {
@@ -116,27 +127,21 @@
             height:calc(100vh - 64px);
         }
 	</style>
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	<!-- jQuery -->
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<!-- JavaScript -->
-	<script type="text/javascript" src="assets/js/logic.js"></script>
 </head>
+
 <body>
-    <div id="wrapper" style="display:none;">
+    <div id="wrapper-main" style="display:none;">
 	<nav class="primaryNav">
 		<div class="nav-wrapper">
 			<a href="#!" class="brand-logo">&nbsp;EarWorm</a>
 			<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 			<ul class="right hide-on-med-and-down">
-
 			</ul>
 			<ul class="right">
 				<li><input id="search-input" type="search" size="50" placeholder="Search by lyrics, song title or artist..."></input></li>
 				<li><i id="search-button" class="white-text material-icons prefix">search</i></li>
 			</ul>
 			<ul class="side-nav" id="mobile-demo">
-
 			</ul>
 		</div>
 	</nav>
@@ -152,13 +157,14 @@
 			<h2 class="header">Music</h2>
 			<table>
 				<thead id="song-list-hdr">
-					<tr class="song-list-hdr">
+					<tr>
 		                <th>Song</th>
 		                <th>Album</th>
 		                <th>Artist</th>
 		            </tr>
 				</thead>
-				<tbody id="song-list"></tbody>
+				<tbody id="song-list">
+                </tbody>
 			</table>
 		</div>
 	</div>
@@ -185,7 +191,7 @@
     	});
 	</script>
 
-<div style="display:block">
+<div id="wrapper-init" style="display:block">
     <nav class="primaryNav">
         <div class="nav-wrapper">
             <a href="#!" class="brand-logo center">&nbsp;EarWorm</a>
@@ -200,10 +206,10 @@
         <div class="col s12 m4">
             <form>
                 <div class="input-field">
-                    <input placeholder="Enter lyrics or Artist Name" id="first_name" type="text" class="validate center-align">
+                    <input placeholder="Search by lyrics, song title or artist..." id="search-initial" type="text" class="validate center-align">
 
                     <div class="card-action center-align">
-                        <input type="submit" class="btn" value="Search">
+                        <input type="submit" class="btn" value="Search" id="search-button-init">
                     </div>
                 </div>
             </form>
