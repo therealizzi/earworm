@@ -15,6 +15,8 @@
     <script type="text/javascript" src="assets/js/logic.js"></script>
     <!-- Gmaps -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsTPnP5VeUbTo_BRvDJ9CTdolGIkbZfbE"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
     <!-- Bootstrap.css -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -30,102 +32,7 @@
  	<!--Let browser know website is optimized for mobile-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<style>
-		.parallax-container {
-      		height: 510px;
-      		/*box-shadow: 5px 5px 20px 5px #111 inset;*/
-
-    	}
-    	#para01 {
-    		position:relative;
-    		padding-left:0;
-    		padding-right:0;
-    		overflow:hidden;
-    	}
-    	#para02 {
-    		position:relative;
-    		padding-left:0;
-    		padding-right:0;
-    		overflow:hidden;
-    		background-color: #17263c;
-    	}
-    	.row {
-    		padding-bottom: 0;
-    		margin-bottom:0;
-    	}
-    	.overlay {
-    		background-color:rgba(100,100,100,0.5);
-    		position:absolute;
-    		width:100%;
-    		height:100%;
-    		margin-top:-510px;
-    	}
-
-    	#para01:hover .overlay {
-			animation-name: slider;
-			animation-duration: 1s;
-    		margin-top:0px;
-    	}
-
-		#para01:not(:hover) .overlay {
-			animation-name: sliderRev;
-			animation-duration: 1s;
-    		margin-top:-510px;
-    	}
-
-/*		#para01:hover .parallax-container {
-			animation-name: shadowfade;
-			animation-duration: 1s;
-			box-shadow:none;
-		}
-*/
-/*		#para01:not(:hover) .parallax-container {
-			animation-name: shadowfadeRev;
-			animation-duration: 1s;
-			box-shadow:5px 5px 20px 5px #111 inset;
-		}
-*/
-    	@keyframes slider {
-    		0% {margin-top:-510px;}
-    		100% {margin-top:0px;}
-    	}
-
-/*    	@keyframes shadowfade {
-    		0% {box-shadow:5px 5px 20px 5px #111 inset;}
-    		100%{box-shadow:none;}
-    	}
- */
-		@keyframes sliderRev {
-    		100% {margin-top:-510px;}
-    		0% {margin-top:0px;}
-    	}
-
-/*    	@keyframes shadowfadeRev {
-    		100% {box-shadow:5px 5px 20px 5px #111 inset;}
-    		0%{box-shadow:none;}
-    	}
- */   	.primaryNav {
-    		background-color:#444;
-    	}
-		.secondaryNav, .inputfield{
-			background-color:#555;
-			height:50px;
-		}
-		input[type*='search'] {
-			color:white;
-		}
-		i#search-button:hover {
-			cursor:pointer;
-		}
-		.pastMax {
-			max-height: 500px;
-			overflow-y: auto;
-		}
-		.maxHeight {
-			overflow: hidden;
-		}
-        .fullHeight {
-            height:calc(100vh - 64px);
-        }
+		
 	</style>
 </head>
 
@@ -134,64 +41,56 @@
 	<nav class="primaryNav">
 		<div class="nav-wrapper">
 			<a href="#!" class="brand-logo">&nbsp;EarWorm</a>
-			<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-			<ul class="right hide-on-med-and-down">
-			</ul>
-			<ul class="right">
-				<li><input id="search-input" type="search" size="50" placeholder="Search by lyrics, song title or artist..."></input></li>
-				<li><i id="search-button" class="white-text material-icons prefix">search</i></li>
-			</ul>
-			<ul class="side-nav" id="mobile-demo">
-			</ul>
+            <ul class="right hide-on-med-and-down">
+			    <li><input id="search-input-01" class="search-input" type="search" size="50" placeholder="Search by lyrics, song title or artist..."></li>
+			    <li><i id="search-button-01" class="white-text material-icons prefix search-button" style="padding:0 10px;">search</i></li>
+		    </ul>
 		</div>
 	</nav>
+    <ul class="show-on-medium-and-down hide-on-med-and-up" id="mobile-demo">
+        <li><input id="search-input-02" class="search-input center-align" type="search" size="50" placeholder="Search by lyrics, song title or artist..." style="margin-bottom:0;color:black;"></li>
+        <li><input style="display:block; width:100%; background-color:#444; border:none;padding: 10px 0;color:ghostwhite;" id="search-button-02" class="search-button" type="submit" value="Search"></li>
+    </ul>
 
 	<div class="row" style="border:1px solid black">
 		<div id="para01" class="col s12 m12 l4 maxHeight">
   			<div class="overlay"></div>
 			<div class="parallax-container" id="lyric-box">
-				<div class="parallax" id="lyric-sample"></div>
+				<div class="parallax" id="lyric-sample"><!-- <img src="assets/images/ricepaper_v3_@2X.png"> --></div>
 			</div>
 		</div>
 		<div class="col s12 m12 l8 pastMax">
 			<h2 class="header">Music</h2>
 			<table>
-				<thead id="song-list-hdr">
-					<tr>
-		                <th>Song</th>
-		                <th>Album</th>
-		                <th>Artist</th>
-		            </tr>
-				</thead>
-				<tbody id="song-list">
-                </tbody>
+				<thead id="song-list-hdr"></thead>
+				<tbody id="song-list"></tbody>
 			</table>
 		</div>
 	</div>
 	<div class="row" style="border:1px solid black">
-		<div id="para02" class="col s12 m12 l4 push-l8 maxHeight">
-					<div class="container" style="width:500px; height:500px;">
-				        <div id="map"></div>
-				    </div>
-
+		<div id="para03" class="col s12 m12 l4 push-l8 maxHeight">
+			<div class="parallax-container">
+                <div class="parallax"><img id="artists_img" src=""></div>
+            </div>
 		</div>
-		<div id="tickets" class="col s12 m12 l8 pull-l4 pastMax">
-			<h2 class="header pull-l4">Tickets</h2>
+		<div id="artist_info" class="col s12 m12 l8 pull-l4 pastMax">
 		</div>
-
 	</div>
+    <div class="row" style="border:1px solid black">
+        <div id="para02" class="col s12 m12 l4 maxHeight">
+            <div class="container" style="width:500px; height:500px;">
+                <div id="map"></div>
+            </div>
+        </div>
+        <div id="tickets" class="col s12 m12 l8 pastMax">
+            <h2 class="header pull-l4">Tickets</h2>
+        </div>
+    </div>
 </div>
 
-    <!-- Compiled and minified JavaScript -->
-  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-	<script>
-		$(document).ready(function(){
-      		$('.parallax').parallax();
-      		$(".button-collapse").sideNav();
-    	});
-	</script>
 
-<div id="wrapper-init" style="display:block">
+
+<div id="wrapper-init" style="display:block;">
     <nav class="primaryNav">
         <div class="nav-wrapper">
             <a href="#!" class="brand-logo center">&nbsp;EarWorm</a>
@@ -202,24 +101,22 @@
     </nav>
 
     <div id="myBG" class="row fullHeight valign-wrapper">
-        <div class="col s0 m4"></div>
-        <div class="col s12 m4">
+        <div class="col s0 m3 l4"></div>
+        <div class="col s12 m6 l4">
             <form>
                 <div class="input-field">
                     <input placeholder="Search by lyrics, song title or artist..." id="search-initial" type="text" class="validate center-align">
-
                     <div class="card-action center-align">
                         <input type="submit" class="btn" value="Search" id="search-button-init">
                     </div>
                 </div>
             </form>
         </div>
-        <div class="col s0 m4"><!-- <img src="logo.png" height="100" style="margin-left:-55px;"> --></div>
+        <div class="col s0 m3 l4"></div>
     </div>
 </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <script>
+<script>
         $(document).ready(function(){
             $('.parallax').parallax();
             $(".button-collapse").sideNav();

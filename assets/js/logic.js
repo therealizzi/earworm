@@ -135,8 +135,9 @@ $(window).on( "load", function() { //make sure window has finished loading
 
       requestMapLatLon(globalArtist);
 
-      mySearch(globalArtist);
+      artistInfoSearch(globalArtist);
 
+      mySearch(globalArtist);
 
     });
 
@@ -163,9 +164,10 @@ $(window).on( "load", function() { //make sure window has finished loading
 
     //clear prior search result
     $("#song-list").empty();
-
+    $("#song-list-hdr").empty()
+    $("#song-list-hdr").append("<tr><th>Song</th><th>Album</th><th>Artist</th></tr>")
     //show table header
-    $("#song-list-hdr").css("visibility", "visible");
+    // $("#song-list-hdr").css("visibility", "visible");
 
     //loop through array of song objects
     for (var i = 0; i < songArray.length; i++) {
@@ -212,7 +214,10 @@ $(window).on( "load", function() { //make sure window has finished loading
 
         requestMapLatLon(globalArtist);
         
+        artistInfoSearch(globalArtist);
+
         mySearch(globalArtist);
+        
         
       });
   }
@@ -251,20 +256,50 @@ $(window).on( "load", function() { //make sure window has finished loading
 
 
   //event listener on the search button -- in search bar
-  $("#search-button").on("click", function(event) {
+  $(".search-button").on("click", function(event) {
 
       //prevent the search button from opening new page
       event.preventDefault();
 
       //get the search string from the text box entry
-      searchString = $("#search-input").val().trim();
-
+      // this method can be found in one of the solutions to the homework assignment
+      //   this is in essence the same as for each, which is a loop that 
+      $.each($(".search-input"),function(){
+        if($(this).val().trim() !== ""){
+          searchString = $(this).val().trim();
+          $(this).val("");  
+        }
+      })
+      
       callMusixMatch();
       
       //clear search box
       $("#search-input").val("");
 
   });
+
+  $(".search-input").keypress(function(e){
+    console.log(e);
+    if(e.keyCode == 13){
+      //prevent the search button from opening new page
+      event.preventDefault();
+
+      //get the search string from the text box entry
+      $.each($(".search-input"),function(){
+        if($(this).val().trim() !== ""){
+          searchString = $(this).val().trim();  
+          $(this).val("");
+        }
+
+      })
+      
+
+      callMusixMatch();
+      
+      //clear search box
+      $("#search-input").val("");
+    }
+  })
 
   //event listener on the search button -- on initial search page
   $("#search-button-init").on("click", function(event) {
@@ -454,7 +489,6 @@ $(window).on( "load", function() { //make sure window has finished loading
 
   // bryan's code
   var mySearch = function(myArtist) {
-    $("#myInfo").html("");
     // myArtist = myArtist.replace(/ /g, "%20");
     var myUrl = "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch="+ myArtist +" music&utf8=&format=json"
 
@@ -474,11 +508,43 @@ $(window).on( "load", function() { //make sure window has finished loading
           target: "_blank"
         });
         tempAnchor.html(myTitle);
-        $("#myInfo").append(tempAnchor);
-        $("#myInfo").append("<br />");
-        $("#myInfo").append(myLookup.snippet + "<br />");
+        $("#artist_info").append(tempAnchor);
+        $("#artist_info").append("<br />");
+        $("#artist_info").append(myLookup.snippet + "<br />");
       }
     });
   }
+
+  var artistInfoSearch = function(myArtist) {
+    $("#artist_info").empty();
+    $("#artist_info").append("<h3 class='header pull-l4'>Artist Information</h3>");
+    var baseURL =  "http://ws.audioscrobbler.com/2.0/"; // add ?method=artist.getinfo&artist=
+    var api_key = "c3e14eca8563f82a1805f30ced79d395"; //param: &api_key=
+    //&format=json
+    var queryURL = baseURL + "?method=artist.search&artist=" + globalArtist + "&api_key=" + api_key+
+      "&format=json"; 
+    $.ajax({
+      url: queryURL,
+      method: 'GET',
+      success: function(response){
+        console.log(response);
+        var artName = response.results.artistmatches.artist[0].name;
+        var lastImgIndex = response.results.artistmatches.artist[0].image.length - 1;
+        var artImg = response.results.artistmatches.artist[0].image[lastImgIndex]["#text"];
+        $("#artist_info").append("<h5>Name: " + artName + "</h5><br>");
+        $("#artists_img").attr("src",artImg);
+        $('.parallax').parallax();
+      }
+    })
+  }
+
+  // http://ws.audioscrobbler.com/2.0/
+
+  // Here are the details of your new API account.
+  // Application name  Coding Bootcamp Project - Music Search
+  // API key c3e14eca8563f82a1805f30ced79d395
+  // Shared secret ea1652b730b0fc639e61471a5d3e8441
+  // Registered to Engiineer
+
 
 });

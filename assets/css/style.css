@@ -36,10 +36,14 @@ html, body {
 
 }
 
+.brand-logo:hover {
+  text-decoration:none;
+}
+
 #lyric-sample {
   transform: rotate(345deg);
   text-align: center;
-  padding: 50px;
+  padding: 50px 50px 0px 50px;
   line-height: 1.5;
   font-family: 'Waiting for the Sunrise', cursive;
   /*font-family: 'Gochi Hand', cursive;*/
@@ -48,7 +52,7 @@ html, body {
   z-index: 2;
 }
 
-#lyric-box {
+#lyric-box{
   background-image: url("../images/ricepaper_v3_@2X.png");
 }
 
@@ -59,3 +63,101 @@ html, body {
 #wrapper-main {
   display: none;
 }
+
+.parallax-container {
+  height: 510px;
+  /*box-shadow: 5px 5px 20px 5px #111 inset;*/
+
+}
+#para01, #para03 {
+  position:relative;
+  padding-left:0;
+  padding-right:0;
+  overflow:hidden;
+}
+#para02 {
+  position:relative;
+  padding-left:0;
+  padding-right:0;
+  overflow:hidden;
+  background-color: #17263c;
+}
+.row {
+  padding-bottom: 0;
+  margin-bottom:0;
+}
+.overlay {
+  background-color:rgba(100,100,100,0.5);
+  position:absolute;
+  width:100%;
+  height:100%;
+  margin-top:-510px;
+}
+
+#para01:hover .overlay {
+animation-name: slider;
+animation-duration: 1s;
+  margin-top:0px;
+}
+
+#para01:not(:hover) .overlay {
+animation-name: sliderRev;
+animation-duration: 1s;
+  margin-top:-510px;
+}
+
+/*    #para01:hover .parallax-container {
+animation-name: shadowfade;
+animation-duration: 1s;
+box-shadow:none;
+}
+*/
+/*    #para01:not(:hover) .parallax-container {
+animation-name: shadowfadeRev;
+animation-duration: 1s;
+box-shadow:5px 5px 20px 5px #111 inset;
+}
+*/
+@keyframes slider {
+  0% {margin-top:-510px;}
+  100% {margin-top:0px;}
+}
+
+/*      @keyframes shadowfade {
+  0% {box-shadow:5px 5px 20px 5px #111 inset;}
+  100%{box-shadow:none;}
+}
+*/
+@keyframes sliderRev {
+  100% {margin-top:-510px;}
+  0% {margin-top:0px;}
+}
+
+/*      @keyframes shadowfadeRev {
+  100% {box-shadow:5px 5px 20px 5px #111 inset;}
+  0%{box-shadow:none;}
+}
+*/     .primaryNav {
+  background-color:#444;
+}
+.secondaryNav, .inputfield{
+background-color:#555;
+height:50px;
+}
+input[type*='search'] {
+color:white;
+}
+i#search-button:hover {
+cursor:pointer;
+}
+.pastMax {
+max-height: 510px;
+      min-height:250px;
+overflow-y: auto;
+}
+.maxHeight {
+overflow: hidden;
+}
+  .fullHeight {
+      height:calc(100vh - 64px);
+  }
