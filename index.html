@@ -1,80 +1,162 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Earworm</title>
+    <meta charset="utf-8" />
+    <title>parallax test</title>
+      <!-- Compiled and minified CSS -->
 
-    <!-- Firebase Reference -->
-    <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
-    <!-- jQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- JavaScript -->
-	<script type="text/javascript" src="assets/js/logic.js"></script>
-    <!-- Gmaps -->
+
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <!-- gmaps -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsTPnP5VeUbTo_BRvDJ9CTdolGIkbZfbE"></script>
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <!-- Stylesheet -->
-     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-  	<meta charset="UTF-8">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+        .parallax-container {
+            height: 510px;
+            box-shadow: 5px 5px 20px 5px #111 inset;
 
+        }
+        #para01, #para02 {
+            position:relative;
+            padding-left:0;
+            padding-right:0;
+            overflow:hidden;
+        }
+        .row {
+            padding-bottom: 0;
+            margin-bottom:0;
+        }
+        .overlay {
+            background-color:rgba(100,100,100,0.5);
+            position:absolute;
+            width:100%;
+            height:100%;
+            margin-top:-500px;
+        }
+        @keyframes slider {
+            0% {margin-top:-500px;}
+            100% {margin-top:0px;}
+        }
+        @keyframes shadowfade {
+            0% {box-shadow:5px 5px 20px 5px #111 inset;}
+            100%{box-shadow:none;}
+        }
+
+        @keyframes sliderRev {
+            100% {margin-top:-500px;}
+            0% {margin-top:0px;}
+        }
+        @keyframes shadowfadeRev {
+            100% {box-shadow:5px 5px 20px 5px #111 inset;}
+            0%{box-shadow:none;}
+        }
+        .primaryNav {
+            background-color:#444;
+        }
+        .secondaryNav, .inputfield{
+            background-color:#555;
+            height:50px;
+        }
+        input[type*='search'] {
+            color:black;
+        }
+        i#search-button:hover {
+            cursor:pointer;
+        }
+        .pastMax {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        .maxHeight {
+            overflow: hidden;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- JavaScript -->
+    <script type="text/javascript" src="assets/js/logic.js"></script>
+    <style>
+        .fullHeight {
+            height:calc(100vh - 64px);
+        }
+/*        #myBG {
+            background-image: url(logo.png);
+            background-repeat:no-repeat;
+            background-position: 10% 20%;
+            background-size: 300px;
+        }*/
+    </style>
 </head>
 <body>
-
-    <br>
-
-    <!-- Laura's Code -->
-    <div class="container">
-        <div class="jumbotron" id="song-list">
-                <form id="search-form">
-                    <input type="text" id="search-input" placeholder="Type song lyrics">
-                    <input id="search-button" type="submit" value="Search">
-                </form>
-            <div class="row">
-        		<div class="col-md-4">Song</div>
-        		<div class="col-md-4">Album</div>
-        		<div class="col-md-4">Artist</div>
-        	</div>
+    <nav class="primaryNav">
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo center">&nbsp;EarWorm</a>
+            <ul class="right hide-on-med-and-down">
+            <ul class="side-nav" id="mobile-demo">
+            </ul>
         </div>
+    </nav>
 
+    <div id="myBG" class="row fullHeight valign-wrapper">
+        <div class="col s0 m4"></div>
+        <div class="col s12 m4">
+            <form>
+                <div class="input-field">
+                    <input placeholder="Enter lyrics or Artist Name" id="first_name" type="text" class="validate center-align">
 
-        <!-- Raf's Code -->
-        <div id="tickets" class="col-md-8"></div>
-
-    <!-- Israel's Code -->
-    <div style="width:500px; height:500px;" class="container panel-default">
-        <div class="panel-default panel-body" style="float: left" id="map">
-        </div>
-    </div>
-
-    <!-- Bryan's code -->
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="input-group">
-                    <input id="mySearcher" type="search" class="form-control" placeholder="Search for..." aria-label="Search for...">
-                    <span class="input-group-btn">
-                        <button id="myTester" class="btn btn-secondary" type="submit">Submit</button>
-                    </span>
+                    <div class="card-action center-align">
+                        <input type="submit" class="btn" value="Search">
+                    </div>
                 </div>
-
-
-
-
-
-        <!-- Israel's Code -->
-        <button class="click-me">Click Me</button>
-
-        <div style="width:100%; height:100%;" class="container panel-default">
-            <div class="panel-default panel-body" style="float: left" id="map">
-            </div>
+            </form>
         </div>
-
-        <!-- Bryan's code -->
-        <div id="myInfo"></div>
-
+        <div class="col s0 m4"><!-- <img src="logo.png" height="100" style="margin-left:-55px;"> --></div>
     </div>
 
+
+
+<!-- <div class="row">
+                    <div class="col s4 m4 4">
+                    </div>
+                    <div class="col s4 m4 4">
+                    <div class="col s4 m4 4">
+                    </div>
+    <div class="card">
+        <div class="card-content">
+            <form>
+                <div class="row">
+                </div>
+                <div class="row">
+                    <div class="col s4 m4 4">
+                    </div>
+                    <div class="input-field col s4 m4 4">
+                    </div>
+                    <div class="col s4 m4 4">
+                    </div>
+                        <input placeholder="Enter Lyrics or Artist Name" id="Search-Field" type="text" class="validate">
+                        <label for="lyrics-or-Artist-Name" class="active"></label>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="card-action">
+            <input type="submit" class="btn" value="Search">
+        </div>
+    </div>
+</div> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.parallax').parallax();
+            $(".button-collapse").sideNav();
+        });
+    </script>
 </body>
 </html>
