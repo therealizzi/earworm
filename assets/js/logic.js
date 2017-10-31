@@ -35,8 +35,12 @@ $(window).on("load", function() { //make sure window has finished loading
   var lon = [];
   var date = [];
   var city = [];
+  var venue = [];
+  var lineUp = [];
+  var contentString = [];
   var response;
   var activeResult;
+  var infoWindow = new google.maps.InfoWindow;
 
   function songObject(song, album, artist, id, genre) { //object constructor for song Objects
     this.song = song;
@@ -333,6 +337,8 @@ $(window).on("load", function() { //make sure window has finished loading
   // Israel's Code //
 
   //Need a function to display the map on the screen
+  var map, infoWindow;
+
   function initMap() {
 
     // Styles a map in night mode.
@@ -421,25 +427,73 @@ $(window).on("load", function() { //make sure window has finished loading
       ]
     });
 
-        for (i = 0; i < lat.length; i++){
-          // console.log(lat[i])
-          // console.log(lon[i])
 
-          var icon = {
-            url: 'http://www.clker.com/cliparts/U/T/s/x/w/E/mic-md.png',
-            scaledSize: new google.maps.Size(30,30)
-          };
 
-          var marker = new google.maps.Marker({
-            position: {lat:lat[i], lng:lon[i]},
-            map: map,
-            icon: icon,
-            title: city[i]+" "+date[i],
-            animation: google.maps.Animation.DROP
-          });
-          console.log(marker.map,": ",marker.position, "marker information")
+    // Asks user for permission to plot their location on the map
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
         };
+
+        infoWindow.setPosition(pos);
+        infoWindow.setContent('You are here');
+        infoWindow.open(map);
+        map.setCenter(pos);
+      }, function() {
+        handleLocationError(true, infoWindow, map.getCenter());
+      });
+    } else {
+      // If the browser doesn't support Geolocation
+      handleLocationError(false, infoWindow, map.getCenter());
+    }
+
+    // Loops through the concert Lat/Lon and plots markers on the map
+    for (i = 0; i < lat.length; i++){
+
+      // Sets the marker "icon"
+      var icon = {
+        url: 'http://www.clker.com/cliparts/U/T/s/x/w/E/mic-md.png',
+        scaledSize: new google.maps.Size(20,20)
+      };
+
+      infoWindow = new google.maps.InfoWindow({
+        content: contentString[i]
+      });
+
+      console.log(contentString[i]);
+
+      // Sets the marker position
+      var marker = new google.maps.Marker({
+        position: {lat:lat[i], lng:lon[i]},
+        map: map,
+        icon: icon,
+        title: "See "+lineUp[i]+" live at "+venue[i],
+        animation: google.maps.Animation.DROP
+      });
+
+      console.log(marker.position)
+
+      marker.addListener('click', function() {
+        var content = contentString[i];
+        infoWindow.setContent(content);
+        infoWindow.open(map, marker);
+      });
+      map.addListener('click', function() {
+        infoWindow.close(map, marker);
+      });
+    };
   };
+
+  // If browser errors, this notifies the user and loads the map
+  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(browserHasGeolocation ?
+                        'Error: The Geolocation service failed.' :
+                        'Error: Your browser doesn\'t support geolocation.');
+  infoWindow.open(map);
+  }
 
   // Raf's Code: //
 
@@ -448,9 +502,13 @@ $(window).on("load", function() { //make sure window has finished loading
     
     lat = [];
     lon = [];
+    var date = [];
+    var city = [];
+    var venue = [];
+    var lineUp = [];
+    var contentString = [];
     $("#tickets").empty();
-    console.log(lat);
-    console.log(lon);
+
   }
 
   function requestMapLatLon (bInTownSearch) {
@@ -474,7 +532,13 @@ $(window).on("load", function() { //make sure window has finished loading
         var venueLon = response[i].venue.longitude;
         lat.push(Number(venueLat));
         lon.push(Number(venueLon));
-        city.push(response[i].venue.city)
+        contentString.push(response[i].offers["0"].status);
+        
+        console.log(contentString);
+
+        venue.push(response[i].venue.name);
+        lineUp.push(response[i].lineup);
+        city.push(response[i].venue.city);
         date.push(response[i].datetime);
         var tickets;
         var showConcertTicket = `<div class='col-md-12'> <a href="${tickets}" target='_blank'>${tickets ? "show " + i : "No Offers Found" } </a></div>`;
