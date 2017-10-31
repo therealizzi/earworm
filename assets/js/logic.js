@@ -15,14 +15,10 @@
   };
 })();
 
-//This is a random line
-
-
-function initMap() {};
-// life saving code above ----- DO NOT DELETE //
-
+//google has to initiate maps prior to page load
 
 function initMap() {};
+
 // life saving code above ----- DO NOT DELETE //
 
 
