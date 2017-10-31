@@ -38,11 +38,12 @@ $(window).on( "load", function() { //make sure window has finished loading
   var response;
   var activeResult;
 
-  function songObject(song, album, artist, id) { //object constructor for song Objects
+  function songObject(song, album, artist, id, genre) { //object constructor for song Objects
     this.song = song;
     this.album = album;
     this.artist = artist;
-    this.id = id
+    this.id = id;
+    this.genre = genre;
 
     this.getSong = function() {
        return this.song;
@@ -58,6 +59,9 @@ $(window).on( "load", function() { //make sure window has finished loading
     
     this.getID = function() {
        return this.id;
+    };
+    this.getGenre = function() {
+       return this.genre;
     };
   };
 
@@ -104,10 +108,18 @@ $(window).on( "load", function() { //make sure window has finished loading
         console.log("Artist name-" + i + ":" + artistName);
 
         var trackID = songList.message.body.track_list[i].track.track_id;
-        console.log("Song Title-" + i + ":" + songTitle);
+        console.log("Track ID-" + i + ":" + trackID);
+
+        if (songList.message.body.track_list[i].track.primary_genres.music_genre_list[0] != null) {
+          var trackGenre = songList.message.body.track_list[i].track.primary_genres.music_genre_list[0].music_genre.music_genre_name;
+        } 
+        else {
+          var trackGenre = "none";
+        }
+        console.log("Track Genre-" + i + ":" + trackGenre);
 
         //creating a song object to hold data
-        var tempSongObj = new songObject(songTitle,albumTitle,artistName,trackID);
+        var tempSongObj = new songObject(songTitle,albumTitle,artistName,trackID,trackGenre);
 
         //adding song object to array
         songArray.push(tempSongObj);
@@ -268,6 +280,7 @@ $(window).on( "load", function() { //make sure window has finished loading
       //clear search box
       $("#search-initial").val("");
 
+      //hide initial search page, reveal main page
       toggleWrappers();
 
   });
