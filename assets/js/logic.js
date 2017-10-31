@@ -18,6 +18,14 @@
 //This is a random line
 
 
+function initMap() {};
+// life saving code above ----- DO NOT DELETE //
+
+
+function initMap() {};
+// life saving code above ----- DO NOT DELETE //
+
+
 // Laura's Code //
 
 $(window).on( "load", function() { //make sure window has finished loading
