@@ -202,7 +202,6 @@ $(window).on( "load", function() { //make sure window has finished loading
         //call to get lyrics for new selection
         getLyrics(choice);
 
-        //call other API functions
         requestMapLatLon(globalArtist);
         
         mySearch(globalArtist);
@@ -372,7 +371,20 @@ function initMap() {
 };
 
 // Raf's Code: //
+
+  //empty prior search results array
+  function resetBITSearch() {
+    
+        lat = [];
+        lon = [];
+        $("#tickets").empty();
+
+  }
+
 function requestMapLatLon (bInTownSearch) {
+
+      resetBITSearch();
+
 
       var queryURL = "https://rest.bandsintown.com/artists/"+ bInTownSearch +"/events?app_id=Test"
 
