@@ -15,9 +15,9 @@
   };
 })();
 
-//google has to initiate maps prior to page load
+// //google has to initiate maps prior to page load
 
-function initMap() {};
+// function initMap() {};
 
 // life saving code above ----- DO NOT DELETE //
 
@@ -37,10 +37,8 @@ $(window).on("load", function() { //make sure window has finished loading
   var city = [];
   var venue = [];
   var lineUp = [];
-  var contentString = [];
   var response;
   var activeResult;
-  var infoWindow = new google.maps.InfoWindow;
 
   function songObject(song, album, artist, id, genre) { //object constructor for song Objects
     this.song = song;
@@ -331,16 +329,19 @@ $(window).on("load", function() { //make sure window has finished loading
     //show main page
     $("#wrapper-main").css("display", "block");
 
-
   }
 
   // Israel's Code //
 
   //Need a function to display the map on the screen
-  var map, infoWindow;
+  var map;
+  var markers = [];
+  var infowindows = [];
+  var contentString = [];
 
   function initMap() {
 
+    
     // Styles a map in night mode.
     var map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 37.674, lng: -93.945},
@@ -427,8 +428,6 @@ $(window).on("load", function() { //make sure window has finished loading
       ]
     });
 
-
-
     // Asks user for permission to plot their location on the map
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
@@ -437,16 +436,26 @@ $(window).on("load", function() { //make sure window has finished loading
           lng: position.coords.longitude
         };
 
-        infoWindow.setPosition(pos);
-        infoWindow.setContent('You are here');
-        infoWindow.open(map);
+        // Sets an InfoWindow for the user's Location
+        var userWindow = new google.maps.InfoWindow;
+        userWindow.setPosition(pos);
+        userWindow.setContent('<h4>You</h4>');
+        userWindow.open(map);
         map.setCenter(pos);
+
+        // Sets a click-listener to remove the InfoWindow
+        map.addListener('click', function() {
+        userWindow.close(map, marker);
+        });
+
+        // Handle's errors if location can't be found
       }, function() {
-        handleLocationError(true, infoWindow, map.getCenter());
-      });
+            handleLocationError(true, userWindow, map.getCenter());
+         });
     } else {
+
       // If the browser doesn't support Geolocation
-      handleLocationError(false, infoWindow, map.getCenter());
+      handleLocationError(false, userWindow, map.getCenter());
     }
 
     // Loops through the concert Lat/Lon and plots markers on the map
@@ -455,16 +464,13 @@ $(window).on("load", function() { //make sure window has finished loading
       // Sets the marker "icon"
       var icon = {
         url: 'http://www.clker.com/cliparts/U/T/s/x/w/E/mic-md.png',
-        scaledSize: new google.maps.Size(20,20)
+        scaledSize: new google.maps.Size(30,30)
       };
 
-      infoWindow = new google.maps.InfoWindow({
-        content: contentString[i]
-      });
-
-      console.log(contentString[i]);
-
       // Sets the marker position
+      var infowindow = new google.maps.InfoWindow();
+
+      // Generates a marker, assigning position, icon, title and animation
       var marker = new google.maps.Marker({
         position: {lat:lat[i], lng:lon[i]},
         map: map,
@@ -473,26 +479,33 @@ $(window).on("load", function() { //make sure window has finished loading
         animation: google.maps.Animation.DROP
       });
 
-      console.log(marker.position)
+      // Creates an "infoWindow" click event and assigns content to the window
+      google.maps.event.addListener(marker, 'click', (function (marker, i) {
+        return function () {
+          map.setCenter(marker.position);
+          infowindow.setContent(contentString[i]);
+          infowindow.open(map, marker);
 
-      marker.addListener('click', function() {
-        var content = contentString[i];
-        infoWindow.setContent(content);
-        infoWindow.open(map, marker);
-      });
-      map.addListener('click', function() {
-        infoWindow.close(map, marker);
-      });
+
+          //PUT HTML MANIPULATORS HERE - LINK MAP TO TICKETS::
+
+          $("#tickets").html(contentString[i])
+
+
+          //PUT HTML MANIPULATORS HERE - LINK MAP TO TICKETS::
+
+        }  
+      })(marker, i));
     };
   };
 
   // If browser errors, this notifies the user and loads the map
-  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(browserHasGeolocation ?
+  function handleLocationError(browserHasGeolocation, infowindow, pos) {
+  infowindow.setPosition(pos);
+  infowindow.setContent(browserHasGeolocation ?
                         'Error: The Geolocation service failed.' :
                         'Error: Your browser doesn\'t support geolocation.');
-  infoWindow.open(map);
+  infowindow.open(map);
   }
 
   // Raf's Code: //
@@ -502,12 +515,15 @@ $(window).on("load", function() { //make sure window has finished loading
     
     lat = [];
     lon = [];
-    var date = [];
-    var city = [];
-    var venue = [];
-    var lineUp = [];
-    var contentString = [];
+    date = [];
+    city = [];
+    venue = [];
+    lineUp = [];
+    contentString = [];
     $("#tickets").empty();
+
+    console.log(venue);
+    console.log(lineUp);
 
   }
 
@@ -532,9 +548,7 @@ $(window).on("load", function() { //make sure window has finished loading
         var venueLon = response[i].venue.longitude;
         lat.push(Number(venueLat));
         lon.push(Number(venueLon));
-        contentString.push(response[i].offers["0"].status);
-        
-        console.log(contentString);
+        contentString.push("See "+response[i].lineup["0"]+ " LIVE <br>"+response[i].venue.name+"<br>"+response[i].datetime);
 
         venue.push(response[i].venue.name);
         lineUp.push(response[i].lineup);
@@ -542,6 +556,9 @@ $(window).on("load", function() { //make sure window has finished loading
         date.push(response[i].datetime);
         var tickets;
         var showConcertTicket = `<div class='col-md-12'> <a href="${tickets}" target='_blank'>${tickets ? "show " + i : "No Offers Found" } </a></div>`;
+        
+        console.log(contentString);
+
         if (response[i].offers.length !== 0) {
           tickets = response[i].offers[0].url;
           $("#tickets").append(showConcertTicket);
