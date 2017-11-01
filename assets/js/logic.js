@@ -520,7 +520,8 @@ $(window).on("load", function() { //make sure window has finished loading
     venue = [];
     lineUp = [];
     contentString = [];
-    $("#tickets").empty();
+    // $("#tickets").empty();
+    $('#venues-and-dates').empty();
 
     console.log(venue);
     console.log(lineUp);
@@ -546,25 +547,33 @@ $(window).on("load", function() { //make sure window has finished loading
 
         var venueLat = response[i].venue.latitude;
         var venueLon = response[i].venue.longitude;
+        var venueName = response[i].venue.name;
+        var city = [];
+        var concertDate = response[i].datetime;
+        var tmpDate = new Date(concertDate)
+
         lat.push(Number(venueLat));
         lon.push(Number(venueLon));
         contentString.push("See "+response[i].lineup["0"]+ " LIVE <br>"+response[i].venue.name+"<br>"+response[i].datetime);
-
         venue.push(response[i].venue.name);
         lineUp.push(response[i].lineup);
         city.push(response[i].venue.city);
         date.push(response[i].datetime);
-        var tickets;
-        var showConcertTicket = `<div class='col-md-12'> <a href="${tickets}" target='_blank'>${tickets ? "show " + i : "No Offers Found" } </a></div>`;
-        
-        console.log(contentString);
 
-        if (response[i].offers.length !== 0) {
-          tickets = response[i].offers[0].url;
-          $("#tickets").append(showConcertTicket);
-        } else {
-          tickets = false;
-        }
+        function convertDate(inputFormat) {
+        function pad(s) { return (s < 10) ? '0' + s : s; }
+        var d = new Date(inputFormat);
+        return [pad(d.getMonth()+1), pad(d.getDate()), d.getFullYear()].join('/');
+        };
+
+        var shortDate = convertDate(tmpDate);
+
+        tickets = response[i].url;
+        var showConcertTicket = `<div class='col-md-12'> <a href="${tickets}" target='_blank'>${tickets ? "Get Tickets" : "Sold Out Show" } </a></div>`;
+
+      $("#venues-and-dates").append("<tr class='venue-list' value='" + i + "'><td>" +
+                              shortDate + "</td><td>" + venueName + "</td><td>" +
+                              showConcertTicket + "</td></tr");
       };
       initMap()
     });
@@ -572,7 +581,7 @@ $(window).on("load", function() { //make sure window has finished loading
 
   // bryan's code
   var mySearch = function(myArtist) {
-    // myArtist = myArtist.replace(/ /g, "%20");
+
     var myUrl = "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch="+ myArtist +" music&utf8=&format=json"
 
     $.ajax({
