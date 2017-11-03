@@ -39,9 +39,9 @@ The assignment required we met the following specifications:
 
 Our team used the ideation process to accomplish three things: 1) To get acquainted and align on our personal interests, 2) To explore the complements and gaps in our skill-sets, and MOST IMPORTANTLY 3) Agree on a great idea for this project.
 
-In the process, we discussed our backgrounds, our interests and what type of technology inspired us. The topics we touched on included basic ideas such as: "something attractive and fun", "something practical, but cool", "something I could share with friends and family", "something that solves a simple problem". 
+In the process, we discussed our backgrounds, our interests and what types of technology inspire us. The topics we touched on included basic ideas such as: "something attractive and fun", "something practical, but cool", "something I could share with friends and family", "something that solves a simple problem". 
 
-In the end, we all agreed that MUSIC was something we all felt passionate about. But what? 
+In the end, we all agreed that MUSIC was something we all feel passionate about. But what? 
 
 After several more discussions, we settled on a high-level scope, and a name: "EarWorm". 
 
@@ -51,7 +51,7 @@ After several more discussions, we settled on a high-level scope, and a name: "E
 
 "No single location for comprehensive band info - based off lyric search"
 
-In other words: Where could you go on the internet, if you wanted to type in a few words, and find out everything you could ever want to know about a song or a band? Wikipedia had some stuff. BandsInTown had some stuff. Spotify had some stuff. 
+In other words: Where could you go on the internet, if you wanted to type in a few words, and find out everything you could ever want to know about a song or a band? MusixMatch had some stuff. BandsInTown had some stuff. Wikipedia had some stuff.   
 
 Wouldn't it be cool if someone would combine all of those? 
 
@@ -59,29 +59,29 @@ Wouldn't it be cool if someone would combine all of those?
 
 <strong>3. PROJECT SCOPE</strong>
 
-Once the problem statement was complete, we needed to begin scoping out the work. We did it in the following steps:
+Once the problem statement was complete, we needed to begin scoping out the work. We did this in the following steps:
+<p></p>
+<ul>a. We agreed what features we wanted at a high-level </ul>
+<ul>b. We separated to research the plausibility of each of those features </ul>
+<ul>c. We reunited to compare the findings from our individual research </ul>
+<ul>d. We did some group research on more complex topics or feature decisions </ul>
+<ul>e. We refreshed our scope - removing and adding features </ul>
 
-a. We agreed what features we wanted at a high-level 
-b. We separated to research the plausibility of each of those features
-c. We reunited to compare the findings from our individual research
-d. We did some group research on more complex topics or feature decisions
-e. We refreshed our scope - removing and adding features 
-
-Aaaand so we pulled the trigger....
+Aaaand we pulled the trigger....
 
  --------------------------------------------------------------------------------------------------------------------------------------
 
 <strong>4. TEAM ORGANIZATION</strong>
 
-As the team was scoping the work, we naturally began to research topics that were of interest to us. Those early discussions resulted in a natural work-flow as we began to organize ourselves for the technical build-out of EarWorm. It went like this:
+As the team was scoping the work, we began by researching topics that were of interest to us individually. Those early discussions resulted in a natural work-flow, as we began to organize ourselves for the technical build-out of EarWorm. It went like this:
 
-From the onset, Bryan was interested in music players and Materialize. When the music players didn't pan out (due to issues out of his control), Bryan doubled-down on the Materialize scope and began to dig into the Wikipedia API.
+From the onset, <strong>Bryan</strong> was interested in music players and Materialize. When the music players didn't pan out (due to issues out of his control), Bryan doubled-down on the Materialize scope and began to dig into the Wikipedia API.
 
-Pursuing his interests in live concerts, Raf took on the BandsInTown interface, and contacted the company by email to request API access. Once granted, he coded the AJAX for the BIT API and also integrated CORS-anywhere (a critical piece of EarWorm's technology)
+Pursuing his interests in live concerts, <strong>Raf</strong> took on the BandsInTown interface, and contacted the company by email to request API access. Once granted, he coded the AJAX for the BIT API and also integrated CORS-anywhere (a critical piece of EarWorm's technology)
 
-As the tip of the spear, Laura began testing lyric recognition from MusixMatch. She developed the first critical JS plug-in, which would be required to feed data to the rest of the queries. She finished early and then switched focus to more front-end.
+As the tip of the spear, <strong>Laura</strong> began testing lyric recognition from MusixMatch. She developed the first critical JS plug-in, which would be required to feed data to the rest of the queries. She finished early and then switched focus to more front-end.
 
-Chasing his wildest dreams, Israel tackled the Google Maps API. This challenge proved to be sufficient, and he spent many happy hours fixing errors and chasing bugs on marker displays. The result was also sufficient.
+Chasing his wildest dreams, <strong>Israel</strong> tackled the Google Maps API. This challenge proved to be sufficient, and he spent many happy hours fixing errors and chasing bugs on marker displays. The result was also sufficient.
 
 In the beginning, each of the team members focused exclusively on back-end execution with their respective APIs. Once Bryan had the Materialize front-end setup and the basic JS was working, the team members took turns tweaking and enhancing the UI. 
 
@@ -89,7 +89,7 @@ In the beginning, each of the team members focused exclusively on back-end execu
 
 <strong>5. TECHNICAL OVERVIEW</strong>
 
-EarWorm is primarily written in JavaScript, with dynamic HTML & CSS. The styling of the app is drawn from the Materialize framework, which provides the glossy skin. And in the background, an army of APIs deliver everything you wanna know about that lyric/song/artist.
+EarWorm is primarily written in JavaScript, with dynamic HTML & CSS. The styling of the app is drawn from the Materialize framework, which provides the glossy skin. And in the background, an army of APIs deliver everything you want to know about that lyric/song/artist.
 
 <Languages> JavaScript, HTML, CSS
     
@@ -111,10 +111,10 @@ See for yourself :)
  
 <strong>7. LESSONS LEARNED</strong>
 
-Taking a step back to admirer our work, we concluded a few things we might do differently next time:
+Taking a step back to reflect on our work, we concluded a few things we might change next time:
 
 DO MORE
-- Use "feature" naming conventions for GitHub, this makes merging much easier
+- Use "feature" naming conventions for GitHub, this makes merging and hand-offs much easier
 - Collaboration on each others code - error checking for example
 - Use Materialize on other projects! It rocks
 - Branching and commit/push
@@ -122,10 +122,10 @@ DO MORE
 DO LESS
 - Manual file-merges (see also: "Don't Do")
 - Multi-tasking, trying to get too much done at once
-- Rushing and pushing code
+- Rushing and pushing code out
 
 DO INSTEAD
-- Establish a project or product manager in the beginning, so to keep things organized
+- Establish a project manager in the beginning, to keep ourselves organized
 - Add a full "pseudo-coding" phase, to thoroughly think through the technical aspects
 
 DON'T DO
