@@ -18,7 +18,7 @@ Thank you for checking out EarWorm! If this document does not satisfy your curio
  </li>
  --------------------------------------------------------------------------------------------------------------------------------------
 
-<strong>Background:</strong> This project was assigned to our team on a short turn-around deadline (2 weeks). We were a newly formed team that did not have any prior experience working together. We were tasked with creating a user-input-based application, but we were given significant liberty in terms of direction and purpose. 
+<strong>Background:</strong> This project was assigned to our team on a quick turn-around deadline (2 weeks). We were a newly formed team that did not have any prior experience working together. We were tasked with creating a user-input-based application, but we were given significant liberty in terms of direction and purpose. 
 
 The assignment required we met the following specifications:
 
