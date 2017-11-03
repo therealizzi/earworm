@@ -112,19 +112,18 @@ The APIs run in a sequential fashion like such:
 
 <strong>6. PRODUCT RESULT</strong>
 
-See for yourself :)
+See for yourself: https://therealizzi.github.io/earworm/
 
  --------------------------------------------------------------------------------------------------------------------------------------
  
 <strong>7. LESSONS LEARNED</strong>
 
-Taking a step back to reflect on our work, we concluded a few things we might change next time:
+Taking a step back to reflect on the final product, we concluded a few things to try on our next project:
 
 DO MORE
-- Use "feature" naming conventions for GitHub, this makes merging and hand-offs much easier
-- Collaboration on each others code - error checking for example
-- Use Materialize on other projects! It rocks
-- Branching and commit/push
+- Use "feature" naming conventions for GitHub branches - this makes merging and hand-offs much easier
+- Collaboration on each other's code - error checking for example
+- Use Materialize on other projects - it rocks!
 
 DO LESS
 - Manual file-merges (see also: "Don't Do")
