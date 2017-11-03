@@ -21,16 +21,16 @@ function initMap() {};
 
 // life saving code above ----- DO NOT DELETE //
 
-
-// Laura's Code //
-
-$(window).on( "load", function() { //make sure window has finished loading
+//make sure window has finished loading
+$(window).on( "load", function() { 
 
   var lyrics;
   var searchString;
   var song;
   var songArray = [];
   var globalArtist;
+  var trackLyrics; 
+  var mxmCopyright; 
   var lat =[];
   var lon = [];
   var date = [];
@@ -38,7 +38,10 @@ $(window).on( "load", function() { //make sure window has finished loading
   var response;
   var activeResult;
 
-  function songObject(song, album, artist, id, genre) { //object constructor for song Objects
+// Laura's Code //
+
+//object constructor for song Objects
+  function songObject(song, album, artist, id, genre) { 
     this.song = song;
     this.album = album;
     this.artist = artist;
@@ -150,14 +153,23 @@ $(window).on( "load", function() { //make sure window has finished loading
 
   }
   
-  // Added function call to pull information for Global Arist Raf //
+  //pass clean artist data to Raf for BiT search
   function getMatch(index) {
 
     var choice = index;
+    var tempMatch = songArray[choice].getArtist();
 
-    return songArray[choice].getArtist();
+    //remove "/" from band names because BiT doesn't like those
+    tempMatch = tempMatch.replace(/\//g," ");
+
+    //remove featured artists, trim down to main artist
+    tempMatch = (tempMatch.split(" feat.", 1));
+
+    console.log(tempMatch);
+    return tempMatch;
 
   }
+
 
   function displaySongResults() {
 
@@ -217,9 +229,21 @@ $(window).on( "load", function() { //make sure window has finished loading
       });
   }
 
+  //reset variables 
+  function resetLyrics() {
+
+    trackLyrics = " ";
+    mxmCopyright = " ";
+
+  }
+
+
   function getLyrics(index) {
     
-    var track_id = songArray[index].getID();
+    resetLyrics();
+    var tempIndex = index;
+
+    var track_id = songArray[tempIndex].getID();
     var apiKey = "67f5c5bdc18e9c5135509283dad3eab1";
     var queryURL = "https://api.musixmatch.com/ws/1.1/track.lyrics.get?format=json&callback=callback&track_id="  
                     + track_id + "&apikey=" + apiKey;
@@ -229,26 +253,133 @@ $(window).on( "load", function() { //make sure window has finished loading
         method: "GET"
     }).done(function(mxmresponse) {
 
-    var lyricSearch = JSON.parse(mxmresponse);
+        var lyricSearch = JSON.parse(mxmresponse);
 
-    var trackLyrics = lyricSearch.message.body.lyrics.lyrics_body;
-    var mxmCopyright = lyricSearch.message.body.lyrics.lyrics_copyright;
+        trackLyrics = lyricSearch.message.body.lyrics.lyrics_body;
+        mxmCopyright = lyricSearch.message.body.lyrics.lyrics_copyright;
 
-    //replace newline chars with breaks for display
-    if(trackLyrics.indexOf("\n") > -1) {
-        trackLyrics = trackLyrics.split("\n").join("<br>");
-    }
+        //replace newline chars with breaks for display
+        if(trackLyrics.indexOf("\n") > -1) {
+            trackLyrics = trackLyrics.split("\n").join("<br>");
+        }
 
-    //cuts off lyrics before end of file warning
-    trackLyrics = trackLyrics.split("*", 1);
+        //cuts off lyrics before end of file warning
+        trackLyrics = trackLyrics.split("*", 1);
 
-    // display lyrics
-    $("#lyric-sample").html(trackLyrics);
+        displayLyrics(songArray[tempIndex].getGenre());
 
     });
 
   }
 
+  function displayLyrics(genre) {
+
+    var tempGenre = genre;
+
+    switch (tempGenre) {
+
+      case "Alternative":
+        $("#lyric-box").css("background-image", "url('assets/images/hip-square.png')");
+        $("#lyric-sample").css("font", "bold 18px 'Waiting for the Sunrise', cursive");
+        break;
+
+      case "Blues":
+        $("#lyric-box").css("background-image", "url('assets/images/cheap_diagonal_fabric.png')");
+        $("#lyric-sample").css("font", "14px 'Special Elite', cursive");
+        break;
+
+      case "Christian & Gospel":
+        $("#lyric-box").css("background-image", "url('assets/images/ep_naturalwhite.png')");
+        $("#lyric-sample").css("font", "22px 'Tangerine', cursive");
+        break;
+
+      case "Country":
+        $("#lyric-box").css("background-image", "url('assets/images/straws_@2X.png')");
+        $("#lyric-sample").css("font", "20px 'Smokum', cursive");
+        break;
+
+      case "Dance":
+        $("#lyric-box").css("background-image", "url('assets/images/ignasi_pattern_s.png')");
+        $("#lyric-sample").css("font", "12px 'Warnes', cursive");
+        break;
+
+      case "Easy Listening":
+        $("#lyric-box").css("background-image", "url('assets/images/foggy_birds_@2X.png')");
+        $("#lyric-sample").css("font", "14px 'Lekton', sans-serif");
+        break;
+
+      case "Electronic":
+        $("#lyric-box").css("background-image", "url('assets/images/skulls.png')");
+        $("#lyric-sample").css("font", "16px 'Baumans', cursive");
+        break;
+
+      case "Folk":
+        $("#lyric-box").css("background-image", "url('assets/images/knitting250px.png')");
+        $("#lyric-sample").css("font", "18px 'Reenie Beanie', cursive");
+        break;
+
+      case "Hip Hop/Rap":
+        $("#lyric-box").css("background-image", "url('assets/images/wall4_@2X.png')");
+        $("#lyric-sample").css("font", "bold 16px 'Shadows Into Light', cursive");
+        break;
+
+      case "Jazz":
+        $("#lyric-box").css("background-image", "url('assets/images/round.png')");
+        $("#lyric-sample").css("font", "bold 20px 'Ruthie', cursive");
+        break;
+
+      case "Pop":
+        $("#lyric-box").css("background-image", "url('assets/images/memphis-colorful.png')");
+        $("#lyric-sample").css("font", "16px 'Henny Penny', cursive");
+        break;
+
+      case "R&B/Soul":
+        $("#lyric-box").css("background-image", "url('assets/images/leather_1_@2X.png')");
+        $("#lyric-sample").css("font", "18px 'Seaweed Script', cursive");
+        break;
+
+      case "Reggae":
+        $("#lyric-box").css("background-image", "url('assets/images/arches_@2X.png')");
+        $("#lyric-sample").css("font", "bold 16px 'Give You Glory', cursive");
+        break;
+
+      case "Rock":
+        $("#lyric-box").css("background-image", "url('assets/images/brickwall_@2X.png')");
+        $("#lyric-sample").css("font", "16px 'Love Ya Like A Sister', cursive");
+        break;
+
+      case "Singer/Songwriter":
+        $("#lyric-box").css("background-image", "url('assets/images/roughcloth_@2X.png')");
+        $("#lyric-sample").css("font", "bold 18px 'Dawning of a New Day', cursive");
+        break;
+
+      case "World":
+        $("#lyric-box").css("background-image", "url('assets/images/ravenna_@2X.png')");
+        $("#lyric-sample").css("font", "16px 'Almendra SC', serif");
+        break;
+
+      default:
+        $("#lyric-box").css("background-image", "url('assets/images/ricepaper_v3_@2X.png')");
+        $("#lyric-sample").css("font", "bold 18px 'Waiting for the Sunrise', cursive");
+
+    }
+
+      // display lyrics
+      $("#lyric-sample").html(trackLyrics);
+
+  }
+
+  //remove special characters from user input (validation)
+  //this regexp is sufficient for our app because we are only searching english language lyrics
+  function removeSpecialChars(string) {
+
+    var tempString = string;
+    tempString = tempString.replace(/(?!\w|\s)./g, " ").replace(/_/g," ");
+    
+    return tempString.trim();
+
+    console.log(tempString);
+  }
 
   //event listener on the search button -- in search bar
   $("#search-button").on("click", function(event) {
@@ -258,6 +389,8 @@ $(window).on( "load", function() { //make sure window has finished loading
 
       //get the search string from the text box entry
       searchString = $("#search-input").val().trim();
+
+      removeSpecialChars(searchString);
 
       callMusixMatch();
       
