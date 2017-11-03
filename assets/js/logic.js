@@ -180,8 +180,6 @@ $(window).on("load", function() { //make sure window has finished loading
       var tempArtist = songArray[i].getArtist();
 
       //add a row to display table for each song retrived
-      $("#song-list").append("<tr class='result-list' value='" + i + "'><td>" + 
-                              tempSong + "</td><td>" + tempAlbum + "</td><td>" + 
       $("#song-list").append("<tr class='result-list' value='" + i + "'><td>" +
                               tempSong + "</td><td>" + tempAlbum + "</td><td>" +
                               tempArtist + "</td></tr");
@@ -523,10 +521,6 @@ $(window).on("load", function() { //make sure window has finished loading
     lineUp = [];
     contentString = [];
     $('#venues-and-dates').empty();
-
-    console.log(venue);
-    console.log(lineUp);
-
   }
 
   function requestMapLatLon (bInTownSearch) {
