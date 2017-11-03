@@ -4,17 +4,17 @@
 
 Thank you for checking out EarWorm! If this document does not satisfy your curiosity about this project, please visit the website, the source code, or contact a member of the project team.
 
-Description: Users can enter the song lyrics stuck in their head, and our site will return the best match for that song (using MusicXMatch), display the lyrics of the song (using Wikipedia), show results for any upcoming shows for that artist - with a link to buy tickets (using Bands in Town), and then map the locations of the concert venues (using Google Maps).
+<strong>Description:</strong> Users can enter the song lyrics stuck in their head, and our site will return the best match for that song (using MusicXMatch), display the lyrics of the song (using Wikipedia), show results for any upcoming shows for that artist - with a link to buy tickets (using Bands in Town), and then map the locations of the concert venues (using Google Maps).
 
-This README will cover
-    1. IDEATION
-    2. PROBLEM STATEMENT
-    3. PROJECT SCOPE
-    4. TEAM ORGANIZATION
-    5. TECHNICAL OVERVIEW
-    6. PRODUCT RESULT
-    7. LESSONS LEARNED
- 
+<li>This README will cover
+   <ul> 1. IDEATION </ul>
+   <ul> 2. PROBLEM STATEMENT </ul>
+   <ul> 3. PROJECT SCOPE </ul>
+   <ul> 4. TEAM ORGANIZATION </ul>
+   <ul> 5. TECHNICAL OVERVIEW </ul>
+   <ul> 6. PRODUCT RESULT </ul>
+   <ul> 7. LESSONS LEARNED </ul>
+ </li>
  --------------------------------------------------------------------------------------------------------------------------------------
 
 <strong>Background:</strong> This project was assigned to our team on a short turn-around deadline (2 weeks). We were a newly formed team that did not have any prior experience working together. We were tasked with creating a user-input-based application, but we were given significant liberty in terms of direction and purpose. 
