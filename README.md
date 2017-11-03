@@ -75,13 +75,13 @@ Aaaand so we pulled the trigger....
 
 As the team was scoping the work, we naturally began to research topics that were of interest to us. Those early discussions resulted in a natural work-flow as we began to organize ourselves for the technical build-out of EarWorm. It went like this:
 
-<Bryan> From the onset, Bryan was interested in music players and Materialize. When the music players didn't pan out (due to issues out of his control), Bryan doubled-down on the Materialize scope and began to dig into the Wikipedia API.
+From the onset, Bryan was interested in music players and Materialize. When the music players didn't pan out (due to issues out of his control), Bryan doubled-down on the Materialize scope and began to dig into the Wikipedia API.
 
-<Raf> Pursuing his interests in live concerts, Raf took on the BandsInTown interface, and contacted the company by email to request API access. Once granted, he coded the AJAX for the BIT API and also integrated CORS-anywhere (a critical piece of EarWorm's technology)
+Pursuing his interests in live concerts, Raf took on the BandsInTown interface, and contacted the company by email to request API access. Once granted, he coded the AJAX for the BIT API and also integrated CORS-anywhere (a critical piece of EarWorm's technology)
 
-<Laura> As the tip of the spear, Laura began testing lyric recognition from MusixMatch. She developed the first critical JS plug-in, which would be required to feed data to the rest of the queries. She finished early and then switched focus to more front-end.
+As the tip of the spear, Laura began testing lyric recognition from MusixMatch. She developed the first critical JS plug-in, which would be required to feed data to the rest of the queries. She finished early and then switched focus to more front-end.
 
-<Israel> Chasing his wildest dreams, Israel tackled the Google Maps API. This challenge proved to be sufficient, and he spent many happy hours fixing errors and chasing bugs on marker displays. The result was also sufficient.
+Chasing his wildest dreams, Israel tackled the Google Maps API. This challenge proved to be sufficient, and he spent many happy hours fixing errors and chasing bugs on marker displays. The result was also sufficient.
 
 In the beginning, each of the team members focused exclusively on back-end execution with their respective APIs. Once Bryan had the Materialize front-end setup and the basic JS was working, the team members took turns tweaking and enhancing the UI. 
 
@@ -105,7 +105,7 @@ User Input: lyric/song/artist > MusixMatch: finds the song and band > BandsInTow
 
 <strong>6. PRODUCT RESULT</strong>
 
-See for yourself: https://therealizzi.github.io/earworm/
+See for yourself :)
 
  --------------------------------------------------------------------------------------------------------------------------------------
  
