@@ -6,7 +6,7 @@ Thank you for checking out EarWorm! If this document does not satisfy your curio
 
 <strong>Description:</strong> Users can enter the song lyrics stuck in their head, and our site will return the best match for that song (using MusicXMatch), display the lyrics of the song (using Wikipedia), show results for any upcoming shows for that artist - with a link to buy tickets (using Bands in Town), and then map the locations of the concert venues (using Google Maps).
 
-<li>This README will cover
+<li>This README will cover:
    <p></p>
    <ul> 1. IDEATION </ul>
    <ul> 2. PROBLEM STATEMENT </ul>
