@@ -45,8 +45,6 @@ In the end, we all agreed that MUSIC was something we all felt passionate about.
 
 After several more discussions, we settled on a high-level scope, and a name: "EarWorm". 
 
-We loved it.
-
  --------------------------------------------------------------------------------------------------------------------------------------
 
 <strong>2. PROBLEM STATEMENT</strong>
@@ -56,8 +54,6 @@ We loved it.
 In other words: Where could you go on the internet, if you wanted to type in a few words, and find out everything you could ever want to know about a song or a band? Wikipedia had some stuff. BandsInTown had some stuff. Spotify had some stuff. 
 
 Wouldn't it be cool if someone would combine all of those? 
-
-:)
 
  --------------------------------------------------------------------------------------------------------------------------------------
 
