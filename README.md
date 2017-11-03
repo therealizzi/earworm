@@ -7,7 +7,7 @@ Thank you for checking out EarWorm! If this document does not satisfy your curio
 <strong>Description:</strong> Users can enter the song lyrics stuck in their head, and our site will return the best match for that song (using MusicXMatch), display the lyrics of the song (using Wikipedia), show results for any upcoming shows for that artist - with a link to buy tickets (using Bands in Town), and then map the locations of the concert venues (using Google Maps).
 
 <li>This README will cover
-   <br>
+   <p></p>
    <ul> 1. IDEATION </ul>
    <ul> 2. PROBLEM STATEMENT </ul>
    <ul> 3. PROJECT SCOPE </ul>
@@ -35,7 +35,7 @@ The assignment required we met the following specifications:
 
  --------------------------------------------------------------------------------------------------------------------------------------
 
-1. IDEATION
+<strong>1. IDEATION</strong>
 
 Our team used the ideation process to accomplish three things: 1) To get acquainted and align on our personal interests, 2) To explore the complements and gaps in our skill-sets, and MOST IMPORTANTLY 3) Agree on a great idea for this project.
 
@@ -49,7 +49,7 @@ We loved it.
 
  --------------------------------------------------------------------------------------------------------------------------------------
 
-2. PROBLEM STATEMENT
+<strong>2. PROBLEM STATEMENT</strong>
 
 "No single location for comprehensive band info - based off lyric search"
 
@@ -61,7 +61,7 @@ Wouldn't it be cool if someone would combine all of those?
 
  --------------------------------------------------------------------------------------------------------------------------------------
 
-3. PROJECT SCOPE
+<strong>3. PROJECT SCOPE</strong>
 
 Once the problem statement was complete, we needed to begin scoping out the work. We did it in the following steps:
 
@@ -75,7 +75,7 @@ Aaaand so we pulled the trigger....
 
  --------------------------------------------------------------------------------------------------------------------------------------
 
-4. TEAM ORGANIZATION
+<strong>4. TEAM ORGANIZATION</strong>
 
 As the team was scoping the work, we naturally began to research topics that were of interest to us. Those early discussions resulted in a natural work-flow as we began to organize ourselves for the technical build-out of EarWorm. It went like this:
 
@@ -91,7 +91,7 @@ In the beginning, each of the team members focused exclusively on back-end execu
 
  --------------------------------------------------------------------------------------------------------------------------------------
 
-5. TECHNICAL OVERVIEW
+<strong>5. TECHNICAL OVERVIEW</strong>
 
 EarWorm is primarily written in JavaScript, with dynamic HTML & CSS. The styling of the app is drawn from the Materialize framework, which provides the glossy skin. And in the background, an army of APIs deliver everything you wanna know about that lyric/song/artist.
 
@@ -107,13 +107,13 @@ User Input: lyric/song/artist > MusixMatch: finds the song and band > BandsInTow
 
  --------------------------------------------------------------------------------------------------------------------------------------
 
-6. PRODUCT RESULT
+<strong>6. PRODUCT RESULT</strong>
 
 See for yourself: https://therealizzi.github.io/earworm/
 
  --------------------------------------------------------------------------------------------------------------------------------------
  
-7. LESSONS LEARNED
+<strong>7. LESSONS LEARNED</strong>
 
 Taking a step back to admirer our work, we concluded a few things we might do differently next time:
 
