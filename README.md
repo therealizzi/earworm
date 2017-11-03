@@ -18,7 +18,7 @@ Thank you for checking out EarWorm! If this document does not satisfy your curio
  </li>
  --------------------------------------------------------------------------------------------------------------------------------------
 
-<strong>Background:</strong> This project was assigned to our team on a quick turn-around deadline (2 weeks). We were a newly formed team that did not have any prior experience working together. We were tasked with creating a user-input-based application, but we were given significant liberty in terms of direction and purpose. 
+<strong>Background:</strong> This project was assigned to our team on a quick turn-around deadline (2 weeks). We were a newly formed team that did not have any prior experience working together. We were tasked with creating a user-input-based application, but we were given total freedom in terms of direction and purpose. 
 
 The assignment required we met the following specifications:
 
@@ -27,7 +27,7 @@ The assignment required we met the following specifications:
 - Must utilize a new library / technology that we haven't discussed
 - Must have a polished frontend /UI
 - Must meet good quality coding standards
-- Must not use alerts, confirms, or prompts (look into modals!)
+- Must not use alerts, confirms, or prompts
 - Must have some sort of repeating element (table, columns, etc)
 - Must use Bootstrap or alternative CSS framework
 - Must be deployed on Github pages
@@ -85,6 +85,8 @@ Chasing his wildest dreams, <strong>Israel</strong> tackled the Google Maps API.
 
 In the beginning, each of the team members focused exclusively on back-end execution with their respective APIs. Once Bryan had the Materialize front-end setup and the basic JS was working, the team members took turns tweaking and enhancing the UI. 
 
+The last step was to ensure a "production grade" launch of the technology. We did this by taking turns and performing a series of front-end user-tests and back-end code reviews (error-checking, bug-fixes, and finalized coding notations). 
+
  --------------------------------------------------------------------------------------------------------------------------------------
 
 <strong>5. TECHNICAL OVERVIEW</strong>
@@ -98,8 +100,13 @@ EarWorm is primarily written in JavaScript, with dynamic HTML & CSS. The styling
 <APIs> CORS-Anywhere-Heroku, MusixMatch, BandsInTown, Google Maps & Wikipedia
 
 The APIs run in a sequential fashion like such:
-
-User Input: lyric/song/artist > MusixMatch: finds the song and band > BandsInTown: finds the band's touring schedule and available tickets > Google Maps: plots the upcoming tour venues in a nifty visual > Wikipedia: provides content about the band. And CORS-Anywhere... well, let's just say there's some magic going on there. 
+<p></p>
+<ul>User Input: lyric/song/artist > </ul>
+<ul>MusixMatch: finds the song and band > </ul>
+<ul>BandsInTown: finds the band's touring schedule and available tickets > </ul> 
+<ul>Google Maps: plots the upcoming tour venues in a nifty visual > </ul> 
+<ul>Wikipedia: provides content about the band > </ul>
+<ul>And CORS-Anywhere... well, let's just say there's some magic going on there. </ul>
 
  --------------------------------------------------------------------------------------------------------------------------------------
 
