@@ -52,6 +52,23 @@ html, body {
   z-index: 2;
 }
 
+.ticket-table, .ticket-header, .venues-and-dates {
+  text-align: center !important;
+}
+
+td, th {
+  text-align: center;
+}
+
+.venues-date-tickets {
+  cursor: pointer;
+}
+
+.venues-date-tickets:hover {
+  background: #d59563;
+  color: #242f3e;
+}
+
 #lyric-box{
   background-image: url("../images/ricepaper_v3_@2X.png");
 }

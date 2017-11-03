@@ -58,7 +58,7 @@ $(window).on("load", function() { //make sure window has finished loading
     this.getArtist = function() {
        return this.artist;
     };
-    
+
     this.getID = function() {
        return this.id;
     };
@@ -77,7 +77,7 @@ $(window).on("load", function() { //make sure window has finished loading
     var apiKey = "67f5c5bdc18e9c5135509283dad3eab1";
     // var queryURL = "https://api.musixmatch.com/ws/1.1/track.search?format=json&q_lyrics=" +
     //                  lyrics + "&quorum_factor=1&apikey=" + apiKey;
-    var queryURL = "https://api.musixmatch.com/ws/1.1/track.search?format=json&q=" + searchString + 
+    var queryURL = "https://api.musixmatch.com/ws/1.1/track.search?format=json&q=" + searchString +
         "&f_lyrics_language=en&f_has_lyrics=1&s_track_rating=desc&quorum_factor=1&apikey=" + apiKey;
 
 
@@ -89,7 +89,7 @@ $(window).on("load", function() { //make sure window has finished loading
 
       //reset variables prior to new search;
       resetSearch();
-      
+
       //parse response so it is readable
       var songList = JSON.parse(mxmresponse);
 
@@ -114,7 +114,7 @@ $(window).on("load", function() { //make sure window has finished loading
 
         if (songList.message.body.track_list[i].track.primary_genres.music_genre_list[0] != null) {
           var trackGenre = songList.message.body.track_list[i].track.primary_genres.music_genre_list[0].music_genre.music_genre_name;
-        } 
+        }
         else {
           var trackGenre = "none";
         }
@@ -132,7 +132,7 @@ $(window).on("load", function() { //make sure window has finished loading
       //delay call to prevent server 429 error (too many, too fast)
       setTimeout(getLyrics, 1000, 0);
 
-      // Added this to make variable Global for Artist - Raf 
+      // Added this to make variable Global for Artist - Raf
       globalArtist = getMatch(0); // first result
 
       requestMapLatLon(globalArtist);
@@ -147,12 +147,12 @@ $(window).on("load", function() { //make sure window has finished loading
 
   //empty prior search results array and globalArtist
   function resetSearch() {
-    
+
     songArray = [];
     globalArtist = "";
 
   }
-  
+
   // Added function call to pull information for Global Arist Raf //
   function getMatch(index) {
 
@@ -182,17 +182,19 @@ $(window).on("load", function() { //make sure window has finished loading
       //add a row to display table for each song retrived
       $("#song-list").append("<tr class='result-list' value='" + i + "'><td>" + 
                               tempSong + "</td><td>" + tempAlbum + "</td><td>" + 
+      $("#song-list").append("<tr class='result-list' value='" + i + "'><td>" +
+                              tempSong + "</td><td>" + tempAlbum + "</td><td>" +
                               tempArtist + "</td></tr");
       if (i === 0) {
-        
+
         //show first result as active in table
         $(".result-list").addClass("active");
-        
+
         //saving the value of active element in global variable so can reset later
         activeResult = i;
       }
     }
-          
+
       // event listener for the results table
       $(".result-list").on("click", function(event) {
 
@@ -215,19 +217,19 @@ $(window).on("load", function() { //make sure window has finished loading
         getLyrics(choice);
 
         requestMapLatLon(globalArtist);
-        
+
         artistInfoSearch(globalArtist);
 
         mySearch(globalArtist);
-        
+
       });
   }
 
   function getLyrics(index) {
-    
+
     var track_id = songArray[index].getID();
     var apiKey = "67f5c5bdc18e9c5135509283dad3eab1";
-    var queryURL = "https://api.musixmatch.com/ws/1.1/track.lyrics.get?format=json&callback=callback&track_id="  
+    var queryURL = "https://api.musixmatch.com/ws/1.1/track.lyrics.get?format=json&callback=callback&track_id="
                     + track_id + "&apikey=" + apiKey;
 
     $.ajax({
@@ -264,16 +266,16 @@ $(window).on("load", function() { //make sure window has finished loading
 
       //get the search string from the text box entry
       // this method can be found in one of the solutions to the homework assignment
-      //   this is in essence the same as for each, which is a loop that 
+      //   this is in essence the same as for each, which is a loop that
       $.each($(".search-input"),function(){
         if($(this).val().trim() !== ""){
           searchString = $(this).val().trim();
-          $(this).val("");  
+          $(this).val("");
         }
       });
-      
+
       callMusixMatch();
-      
+
       //clear search box
       $("#search-input").val("");
 
@@ -289,14 +291,14 @@ $(window).on("load", function() { //make sure window has finished loading
       //get the search string from the text box entry
       $.each($(".search-input"),function(){
         if($(this).val().trim() !== ""){
-          searchString = $(this).val().trim();  
+          searchString = $(this).val().trim();
           $(this).val("");
         }
 
       });
 
       callMusixMatch();
-      
+
       //clear search box
       $("#search-input").val("");
     }
@@ -312,7 +314,7 @@ $(window).on("load", function() { //make sure window has finished loading
       searchString = $("#search-initial").val().trim();
 
       callMusixMatch();
-      
+
       //clear search box
       $("#search-initial").val("");
 
@@ -341,7 +343,7 @@ $(window).on("load", function() { //make sure window has finished loading
 
   function initMap() {
 
-    
+
     // Styles a map in night mode.
     var map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 37.674, lng: -93.945},
@@ -494,7 +496,7 @@ $(window).on("load", function() { //make sure window has finished loading
 
           //PUT HTML MANIPULATORS HERE - LINK MAP TO TICKETS::
 
-        }  
+        }
       })(marker, i));
     };
   };
@@ -512,7 +514,7 @@ $(window).on("load", function() { //make sure window has finished loading
 
   //empty prior search results array
   function resetBITSearch() {
-    
+
     lat = [];
     lon = [];
     date = [];
@@ -520,7 +522,6 @@ $(window).on("load", function() { //make sure window has finished loading
     venue = [];
     lineUp = [];
     contentString = [];
-    // $("#tickets").empty();
     $('#venues-and-dates').empty();
 
     console.log(venue);
@@ -530,8 +531,12 @@ $(window).on("load", function() { //make sure window has finished loading
 
   function requestMapLatLon (bInTownSearch) {
 
-    resetBITSearch();
+        // Append Headers to table //
+        $("#ticket-header").append(" <th>Show Date</th><th>Venue Name</th><th>Ticket Link</th>")
 
+    // Calls the function above to reset previous search results //
+    resetBITSearch();
+    //Variable that enters the first search result into Bands In Town API hyperlink //
     var queryURL = "https://rest.bandsintown.com/artists/"+ bInTownSearch +"/events?app_id=Test"
 
     $.ajax({
@@ -539,39 +544,84 @@ $(window).on("load", function() { //make sure window has finished loading
       method: "GET"
     })
 
-    // After the data from the AJAX request comes back
+    // After the data from the AJAX request comes back //
     .done(function(response) {
-      console.log(response, "response from Raf's");
+      // Created a variable to count the number of responses that come back from the BIT API Call //
       latLonResults = response.length
+
+      // Created a for loop
       for ( var i = 0; i < latLonResults; i++){
 
+        // Set variable for venue latitude from API response //
         var venueLat = response[i].venue.latitude;
+
+        // Set variable for venue longitude from API response //
         var venueLon = response[i].venue.longitude;
+
+        // Set variable for venue name from API response //
         var venueName = response[i].venue.name;
+
+        // Set variable for city name from API response //
+        var cityName = response[i].venue.city;
+
+        // Set variable for city to fill array //
         var city = [];
+
+        // Set variable for concert date //
         var concertDate = response[i].datetime;
+
+        // Set variable for performing artists //
+        var performingArtists = response[i].lineup;
+
+        // Created a variable with url for ticket purchase //
+        tickets = response[i].url;
+
+        // Set variable fpr date from API response to convert later into MM-DD-YYYY //
         var tmpDate = new Date(concertDate)
 
-        lat.push(Number(venueLat));
-        lon.push(Number(venueLon));
-        contentString.push("See "+response[i].lineup["0"]+ " LIVE <br>"+response[i].venue.name+"<br>"+response[i].datetime);
-        venue.push(response[i].venue.name);
-        lineUp.push(response[i].lineup);
-        city.push(response[i].venue.city);
-        date.push(response[i].datetime);
+        //Created variable for short date conversion //
+        var shortDate = convertDate(tmpDate);
 
+        // Push venue latitutude into lat Array and make Global Variable //
+        lat.push(Number(venueLat));
+
+        // Push venue longitude into lon Array and make Global Variable //
+        lon.push(Number(venueLon));
+
+        // Push string See "artist" live "listing venue name and date" //
+        contentString.push("See "+response[i].lineup["0"]+ " LIVE <br>"+response[i].venue.name+"<br>"+response[i].datetime);
+
+        // Push venue name into global venue array //
+        venue.push(venueName);
+
+        // Push venue name into global venue array //
+        lineUp.push(performingArtists);
+
+        // Push cityname into global city array //
+        city.push(cityName);
+
+        // Push date into global date array //
+        date.push(shortDate);
+
+        // Function taking the venue date and converting it to MM-DD-YYYY //
         function convertDate(inputFormat) {
+
+        // Function to arrange date from ISO date into correct format //
         function pad(s) { return (s < 10) ? '0' + s : s; }
+
+        // Creating a variable that stores the passed input date from API //
         var d = new Date(inputFormat);
+
+        // Returns the date with padding (0 in from of 1 digit number) into MM-DD-YYYY format //
         return [pad(d.getMonth()+1), pad(d.getDate()), d.getFullYear()].join('/');
         };
 
-        var shortDate = convertDate(tmpDate);
+        // Creating a variable  to store ticket hyperlink //
+        var showConcertTicket = `<div class='col-md-12'> <a href="${tickets}" target='_blank'>Get Tickets</a></div>`;
 
-        tickets = response[i].url;
-        var showConcertTicket = `<div class='col-md-12'> <a href="${tickets}" target='_blank'>${tickets ? "Get Tickets" : "Sold Out Show" } </a></div>`;
 
-      $("#venues-and-dates").append("<tr class='venue-list' value='" + i + "'><td>" +
+        // Appends date, venue name, and tickets to table on results page //
+        $("#venues-and-dates").append("<tr class='venues-date-tickets' value='" + i + "'><td>" +
                               shortDate + "</td><td>" + venueName + "</td><td>" +
                               showConcertTicket + "</td></tr");
       };
@@ -614,7 +664,7 @@ $(window).on("load", function() { //make sure window has finished loading
     var api_key = "c3e14eca8563f82a1805f30ced79d395"; //param: &api_key=
     //&format=json
     var queryURL = baseURL + "?method=artist.search&artist=" + globalArtist + "&api_key=" + api_key+
-      "&format=json"; 
+      "&format=json";
     $.ajax({
       url: queryURL,
       method: 'GET',
