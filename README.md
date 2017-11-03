@@ -1,10 +1,10 @@
 # earworm
 
-Team Contributors: Bryan Isles, Israel Peck, Laura Ward & Rafal Kociolek
+<strong>Team Contributors:</strong> Bryan Isles, Israel Peck, Laura Ward & Rafal Kociolek
 
 Thank you for checking out EarWorm! If this document does not satisfy your curiosity about this project, please visit the website, the source code, or contact a member of the project team.
 
-Description: Users can enter the song lyrics stuck in their head, and our site will return the best match for that song (using MusicXMatch), display the lyrics of the song, show results for any upcoming shows for that artist with a link to buy tickets (using Bands in Town), and then map the locations of the concert venues (using Google Maps)
+Description: Users can enter the song lyrics stuck in their head, and our site will return the best match for that song (using MusicXMatch), display the lyrics of the song (using Wikipedia), show results for any upcoming shows for that artist - with a link to buy tickets (using Bands in Town), and then map the locations of the concert venues (using Google Maps).
 
 This README will cover
     1. IDEATION
@@ -17,7 +17,7 @@ This README will cover
  
  --------------------------------------------------------------------------------------------------------------------------------------
 
-Background: This project was assigned to our team on a short turn-around deadline (2 weeks). We were a newly formed team that did not have any prior experience working together. We were tasked with creating a user-input-based application, but we were given significant liberty in terms of direction and purpose. 
+<strong>Background:</strong> This project was assigned to our team on a short turn-around deadline (2 weeks). We were a newly formed team that did not have any prior experience working together. We were tasked with creating a user-input-based application, but we were given significant liberty in terms of direction and purpose. 
 
 The assignment required we met the following specifications:
 
