@@ -29,6 +29,10 @@ td, th {
   color: #f3d19c;
   font-style: italic;
 }
+.container {
+  width:500px; 
+  height:500px;
+}
 
 .brand-logo:hover {
   text-decoration:none;
@@ -55,6 +59,10 @@ td, th {
 .row {
   padding-bottom: 0;
   margin-bottom:0;
+  border-style: ridge hidden ridge hidden;
+  border-width: 2px 0px 3px 0px;
+  border-color: #d59563;
+
 }
 
 .overlay {
@@ -149,6 +157,24 @@ i#search-button:hover {
   animation-name: sliderRev;
   animation-duration: 1s;
   margin-top:-510px;
+}
+
+#search-button-01 {
+  padding:0 10px;
+}
+
+#search-button-02 {
+  display:block;
+  width:100%;
+  background-color:#444;
+  border:none;
+  padding: 10px 0;
+  color:ghostwhite;
+}
+
+#search-input-02 {
+  margin-bottom:0;
+  color:black;
 }
 
 /*    #para01:hover .parallax-container {

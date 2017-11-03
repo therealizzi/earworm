@@ -285,87 +285,87 @@ $(window).on( "load", function() {
 
       case "Alternative":
         $("#lyric-box").css("background-image", "url('assets/images/hip-square.png')");
-        $("#lyric-sample").css("font", "bold 18px 'Waiting for the Sunrise', cursive");
+        $("#lyric-sample").css({"font":"bold 18px 'Waiting for the Sunrise', cursive","transform":"rotate(345deg)"});
         break;
 
       case "Blues":
         $("#lyric-box").css("background-image", "url('assets/images/cheap_diagonal_fabric.png')");
-        $("#lyric-sample").css("font", "14px 'Special Elite', cursive");
+        $("#lyric-sample").css({"font":"14px 'Special Elite', cursive","transform":"rotate(355deg)"});
         break;
 
       case "Christian & Gospel":
         $("#lyric-box").css("background-image", "url('assets/images/ep_naturalwhite.png')");
-        $("#lyric-sample").css("font", "22px 'Tangerine', cursive");
+        $("#lyric-sample").css({"font":"22px 'Tangerine', cursive","transform":"rotate(358deg)"});
         break;
 
       case "Country":
         $("#lyric-box").css("background-image", "url('assets/images/straws_@2X.png')");
-        $("#lyric-sample").css("font", "20px 'Smokum', cursive");
+        $("#lyric-sample").css({"font":"20px 'Smokum', cursive","transform":"rotate(350deg)"});
         break;
 
       case "Dance":
         $("#lyric-box").css("background-image", "url('assets/images/ignasi_pattern_s.png')");
-        $("#lyric-sample").css("font", "12px 'Warnes', cursive");
+        $("#lyric-sample").css({"font":"12px 'Warnes', cursive","transform":"rotate(346deg)"});
         break;
 
       case "Easy Listening":
         $("#lyric-box").css("background-image", "url('assets/images/foggy_birds_@2X.png')");
-        $("#lyric-sample").css("font", "14px 'Lekton', sans-serif");
+        $("#lyric-sample").css({"font":"14px 'Lekton', sans-serif","transform":"rotate(350deg)"});
         break;
 
       case "Electronic":
         $("#lyric-box").css("background-image", "url('assets/images/skulls.png')");
-        $("#lyric-sample").css("font", "16px 'Baumans', cursive");
+        $("#lyric-sample").css({"font":"16px 'Baumans', cursive","transform":"rotate(348deg)"});
         break;
 
       case "Folk":
         $("#lyric-box").css("background-image", "url('assets/images/knitting250px.png')");
-        $("#lyric-sample").css("font", "18px 'Reenie Beanie', cursive");
+        $("#lyric-sample").css({"font":"18px 'Reenie Beanie', cursive","transform":"rotate(347deg)"});
         break;
 
       case "Hip Hop/Rap":
         $("#lyric-box").css("background-image", "url('assets/images/wall4_@2X.png')");
-        $("#lyric-sample").css("font", "bold 16px 'Shadows Into Light', cursive");
+        $("#lyric-sample").css({"font":"bold 16px 'Shadows Into Light', cursive","transform":"rotate(353deg)"});
         break;
 
       case "Jazz":
         $("#lyric-box").css("background-image", "url('assets/images/round.png')");
-        $("#lyric-sample").css("font", "bold 20px 'Ruthie', cursive");
+        $("#lyric-sample").css({"font":"bold 20px 'Ruthie', cursive","transform":"rotate(346deg)"});
         break;
 
       case "Pop":
         $("#lyric-box").css("background-image", "url('assets/images/memphis-colorful.png')");
-        $("#lyric-sample").css("font", "16px 'Henny Penny', cursive");
+        $("#lyric-sample").css({"font":"16px 'Henny Penny', cursive","transform":"rotate(355deg)"});
         break;
 
       case "R&B/Soul":
         $("#lyric-box").css("background-image", "url('assets/images/leather_1_@2X.png')");
-        $("#lyric-sample").css("font", "18px 'Seaweed Script', cursive");
+        $("#lyric-sample").css({"font":"18px 'Seaweed Script', cursive","transform":"rotate(352deg)"});
         break;
 
       case "Reggae":
         $("#lyric-box").css("background-image", "url('assets/images/arches_@2X.png')");
-        $("#lyric-sample").css("font", "bold 16px 'Give You Glory', cursive");
+        $("#lyric-sample").css({"font":"bold 16px 'Give You Glory', cursive","transform":"rotate(351deg)"});
         break;
 
       case "Rock":
         $("#lyric-box").css("background-image", "url('assets/images/brickwall_@2X.png')");
-        $("#lyric-sample").css("font", "16px 'Love Ya Like A Sister', cursive");
+        $("#lyric-sample").css({"font":"16px 'Love Ya Like A Sister', cursive","transform":"rotate(345deg)"});
         break;
 
       case "Singer/Songwriter":
         $("#lyric-box").css("background-image", "url('assets/images/roughcloth_@2X.png')");
-        $("#lyric-sample").css("font", "bold 18px 'Dawning of a New Day', cursive");
+        $("#lyric-sample").css({"font":"bold 18px 'Dawning of a New Day', cursive","transform":"rotate(347deg)"});
         break;
 
       case "World":
         $("#lyric-box").css("background-image", "url('assets/images/ravenna_@2X.png')");
-        $("#lyric-sample").css("font", "16px 'Almendra SC', serif");
+        $("#lyric-sample").css({"font":"18px 'Almendra SC', serif","transform":"rotate(355deg)"});
         break;
 
       default:
         $("#lyric-box").css("background-image", "url('assets/images/ricepaper_v3_@2X.png')");
-        $("#lyric-sample").css("font", "bold 18px 'Waiting for the Sunrise', cursive");
+        $("#lyric-sample").css({"font":"bold 18px 'Waiting for the Sunrise', cursive","transform":"rotate(355deg)"});
 
     }
 
