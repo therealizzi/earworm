@@ -103,23 +103,21 @@ $(window).on( "load", function() {
 
       //getting the info from API JSON and assigning to variables
         var songTitle = songList.message.body.track_list[i].track.track_name;
-        console.log("Song Title-" + i + ":" + songTitle);
 
         var albumTitle = songList.message.body.track_list[i].track.album_name;
-        console.log("Album Title-" + i + ":" + albumTitle);
 
         var artistName = songList.message.body.track_list[i].track.artist_name;
-        console.log("Artist name-" + i + ":" + artistName);
 
         var trackID = songList.message.body.track_list[i].track.track_id;
-        console.log("Track ID-" + i + ":" + trackID);
 
+        //check if track has genre info, if so collect, if not set as "none"
         if (songList.message.body.track_list[i].track.primary_genres.music_genre_list[0] != null) {
           var trackGenre = songList.message.body.track_list[i].track.primary_genres.music_genre_list[0].music_genre.music_genre_name;
         }
         else {
           var trackGenre = "none";
         }
+        
         console.log("Track Genre-" + i + ":" + trackGenre);
 
         //creating a song object to hold data
@@ -131,7 +129,7 @@ $(window).on( "load", function() {
 
       displaySongResults();
 
-      //delay call to prevent server 429 error (too many, too fast)
+      //delay 2nd call to Musixmatch API to prevent server 429 error (too many, too fast)
       setTimeout(getLyrics, 1000, 0);
 
       // Added this to make variable Global for Artist - Raf
@@ -177,10 +175,10 @@ $(window).on( "load", function() {
 
     //clear prior search result
     $("#song-list").empty();
-    $("#song-list-hdr").empty()
-    $("#song-list-hdr").append("<tr><th>Song</th><th>Album</th><th>Artist</th></tr>")
-    //show table header
-    // $("#song-list-hdr").css("visibility", "visible");
+
+    //reset table headers
+    $("#song-list-hdr").empty();
+    $("#song-list-hdr").append("<tr><th>Song</th><th>Album</th><th>Artist</th></tr>");
 
     //loop through array of song objects
     for (var i = 0; i < songArray.length; i++) {
@@ -278,6 +276,7 @@ $(window).on( "load", function() {
 
   }
 
+  //change lyrics display font and graphics based on track genre
   function displayLyrics(genre) {
 
     var tempGenre = genre;
@@ -387,51 +386,55 @@ $(window).on( "load", function() {
     console.log(tempString);
   }
 
-  //event listener on the search button -- in search bar
+  //event listener on the search button -- in search bar (main and mobile)
   $(".search-button").on("click", function(event) {
 
       //prevent the search button from opening new page
       event.preventDefault();
 
       //get the search string from the text box entry
-      // this method can be found in one of the solutions to the homework assignment
-      //   this is in essence the same as for each, which is a loop that
       $.each($(".search-input"),function(){
+        //validate user input, make sure something was entered
         if($(this).val().trim() !== ""){
+          //remove extra spaces
           searchString = $(this).val().trim();
+          //clear search box
           $(this).val("");
         }
       });
 
+      //validate user input, remove any special characters
       removeSpecialChars(searchString);
 
       callMusixMatch();
-
-      //clear search box
-      $("#search-input").val("");
 
   });
 
   // Event listener for 'enter' keypress
   $(".search-input").keypress(function(e){
-    console.log(e);
+
     if(e.keyCode == 13){
+
       //prevent the search button from opening new page
       event.preventDefault();
 
       //get the search string from the text box entry
       $.each($(".search-input"),function(){
+        //validate user input, make sure something was entered
         if($(this).val().trim() !== ""){
+          //remove extra spaces
           searchString = $(this).val().trim();
+          //clear search box
           $(this).val("");
         }
 
       });
 
+      //validate user input, remove any special characters
+      removeSpecialChars(searchString);
+
       callMusixMatch();
 
-      //clear search box
-      $("#search-input").val("");
     }
   })
 
@@ -443,6 +446,9 @@ $(window).on( "load", function() {
 
       //get the search string from the text box entry
       searchString = $("#search-initial").val().trim();
+
+      //validate user input, remove any special characters
+      removeSpecialChars(searchString);
 
       callMusixMatch();
 
@@ -657,9 +663,12 @@ $(window).on( "load", function() {
   }
 
   function requestMapLatLon (bInTownSearch) {
+    
+    //reset table headers
+    $("#ticket-header").empty();
 
-        // Append Headers to table //
-        $("#ticket-header").append(" <th>Show Date</th><th>Venue Name</th><th>Ticket Link</th>")
+    // Append Headers to table //
+    $("#ticket-header").append(" <th>Show Date</th><th>Venue Name</th><th>Ticket Link</th>")
 
     // Calls the function above to reset previous search results //
     resetBITSearch();

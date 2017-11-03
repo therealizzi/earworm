@@ -1,13 +1,12 @@
-#map {
-  height: 100%;
-  width: 100%;
-}
-
 /* Optional: Makes the sample page fill the window. */
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+td, th {
+  text-align: center;
 }
 
 .result-list {
@@ -31,13 +30,75 @@ html, body {
   font-style: italic;
 }
 
-#song-list-hdr {
-  visibility: collapse;
-
-}
-
 .brand-logo:hover {
   text-decoration:none;
+}
+
+.ticket-table, .ticket-header, .venues-and-dates {
+  text-align: center !important;
+}
+
+.venues-date-tickets {
+  cursor: pointer;
+}
+
+.venues-date-tickets:hover {
+  background: #d59563;
+  color: #242f3e;
+}
+
+.parallax-container {
+  height: 510px;
+  /*box-shadow: 5px 5px 20px 5px #111 inset;*/
+}
+
+.row {
+  padding-bottom: 0;
+  margin-bottom:0;
+}
+
+.overlay {
+  background-color:rgba(100,100,100,0.5);
+  position:absolute;
+  width:100%;
+  height:100%;
+  margin-top:-510px;
+}
+
+.primaryNav {
+  background-color:#444;
+}
+
+.secondaryNav, .inputfield{
+  background-color:#555;
+  height:50px;
+}
+
+input[type*='search'] {
+  color:white;
+}
+
+i#search-button:hover {
+  cursor:pointer;
+}
+
+.pastMax {
+  max-height: 510px;
+  min-height:250px;
+  overflow-y: auto;
+}
+
+.maxHeight {
+  overflow: hidden;
+}
+
+.fullHeight {
+    height:calc(100vh - 64px);
+}
+
+#map {
+  height: 100%;
+  width: 100%;
 }
 
 #lyric-sample {
@@ -49,23 +110,6 @@ html, body {
   font-size: 18px;
   font-weight: bold;
   z-index: 2;
-}
-
-.ticket-table, .ticket-header, .venues-and-dates {
-  text-align: center !important;
-}
-
-td, th {
-  text-align: center;
-}
-
-.venues-date-tickets {
-  cursor: pointer;
-}
-
-.venues-date-tickets:hover {
-  background: #d59563;
-  color: #242f3e;
 }
 
 #lyric-box{
@@ -80,17 +124,13 @@ td, th {
   display: none;
 }
 
-.parallax-container {
-  height: 510px;
-  /*box-shadow: 5px 5px 20px 5px #111 inset;*/
-
-}
 #para01, #para03 {
   position:relative;
   padding-left:0;
   padding-right:0;
   overflow:hidden;
 }
+
 #para02 {
   position:relative;
   padding-left:0;
@@ -98,27 +138,16 @@ td, th {
   overflow:hidden;
   background-color: #17263c;
 }
-.row {
-  padding-bottom: 0;
-  margin-bottom:0;
-}
-.overlay {
-  background-color:rgba(100,100,100,0.5);
-  position:absolute;
-  width:100%;
-  height:100%;
-  margin-top:-510px;
-}
 
 #para01:hover .overlay {
-animation-name: slider;
-animation-duration: 1s;
+  animation-name: slider;
+  animation-duration: 1s;
   margin-top:0px;
 }
 
 #para01:not(:hover) .overlay {
-animation-name: sliderRev;
-animation-duration: 1s;
+  animation-name: sliderRev;
+  animation-duration: 1s;
   margin-top:-510px;
 }
 
@@ -134,6 +163,7 @@ animation-duration: 1s;
 box-shadow:5px 5px 20px 5px #111 inset;
 }
 */
+
 @keyframes slider {
   0% {margin-top:-510px;}
   100% {margin-top:0px;}
@@ -144,6 +174,7 @@ box-shadow:5px 5px 20px 5px #111 inset;
   100%{box-shadow:none;}
 }
 */
+
 @keyframes sliderRev {
   100% {margin-top:-510px;}
   0% {margin-top:0px;}
@@ -153,27 +184,4 @@ box-shadow:5px 5px 20px 5px #111 inset;
   100% {box-shadow:5px 5px 20px 5px #111 inset;}
   0%{box-shadow:none;}
 }
-*/     .primaryNav {
-  background-color:#444;
-}
-.secondaryNav, .inputfield{
-background-color:#555;
-height:50px;
-}
-input[type*='search'] {
-color:white;
-}
-i#search-button:hover {
-cursor:pointer;
-}
-.pastMax {
-max-height: 510px;
-      min-height:250px;
-overflow-y: auto;
-}
-.maxHeight {
-overflow: hidden;
-}
-  .fullHeight {
-      height:calc(100vh - 64px);
-  }
+*/     
