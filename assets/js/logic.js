@@ -272,6 +272,9 @@ $(window).on( "load", function() {
 
         displayLyrics(songArray[tempIndex].getGenre());
 
+        //must include copyright per terms of API
+        $("#copyright-data").html(mxmCopyright);
+
     });
 
   }
@@ -293,6 +296,11 @@ $(window).on( "load", function() {
         $("#lyric-sample").css({"font":"14px 'Special Elite', cursive","transform":"rotate(355deg)"});
         break;
 
+      case "Children's Music":
+        $("#lyric-box").css("background-image", "url('assets/images/tree_bark.png')");
+        $("#lyric-sample").css({"font":"20px 'Fredericka the Great', cursive","transform":"rotate(357deg)"});
+        break;
+
       case "Christian & Gospel":
         $("#lyric-box").css("background-image", "url('assets/images/ep_naturalwhite.png')");
         $("#lyric-sample").css({"font":"22px 'Tangerine', cursive","transform":"rotate(358deg)"});
@@ -300,7 +308,7 @@ $(window).on( "load", function() {
 
       case "Country":
         $("#lyric-box").css("background-image", "url('assets/images/straws_@2X.png')");
-        $("#lyric-sample").css({"font":"20px 'Smokum', cursive","transform":"rotate(350deg)"});
+        $("#lyric-sample").css({"font":"22px 'Smokum', cursive","transform":"rotate(357deg)"});
         break;
 
       case "Dance":
@@ -328,9 +336,19 @@ $(window).on( "load", function() {
         $("#lyric-sample").css({"font":"bold 16px 'Shadows Into Light', cursive","transform":"rotate(353deg)"});
         break;
 
-      case "Jazz":
+      case "Heavy Metal":
+        $("#lyric-box").css("background-image", "url('assets/images/stonehaven.png')");
+        $("#lyric-sample").css({"font":"16px 'New Rocker', cursive","transform":"rotate(355deg)"});
+        break;
+
+      case "Holiday":
+        $("#lyric-box").css("background-image", "url('assets/images/new_year_background.png')");
+        $("#lyric-sample").css({"font":"bold 16px 'Spirax', cursive","transform":"rotate(355deg)"});
+        break;
+
+       case "Jazz":
         $("#lyric-box").css("background-image", "url('assets/images/round.png')");
-        $("#lyric-sample").css({"font":"bold 20px 'Ruthie', cursive","transform":"rotate(346deg)"});
+        $("#lyric-sample").css({"font":"bold 22px 'Ruthie', cursive","transform":"rotate(350deg)"});
         break;
 
       case "Pop":
@@ -350,12 +368,17 @@ $(window).on( "load", function() {
 
       case "Rock":
         $("#lyric-box").css("background-image", "url('assets/images/brickwall_@2X.png')");
-        $("#lyric-sample").css({"font":"16px 'Love Ya Like A Sister', cursive","transform":"rotate(345deg)"});
+        $("#lyric-sample").css({"font":"16px 'Love Ya Like A Sister', cursive","transform":"rotate(347deg)"});
         break;
 
       case "Singer/Songwriter":
         $("#lyric-box").css("background-image", "url('assets/images/roughcloth_@2X.png')");
         $("#lyric-sample").css({"font":"bold 18px 'Dawning of a New Day', cursive","transform":"rotate(347deg)"});
+        break;
+
+      case "Soundtrack":
+        $("#lyric-box").css("background-image", "url('assets/images/old_map.png')");
+        $("#lyric-sample").css({"font":"bold 18px 'Jim Nightshade', cursive","transform":"rotate(356deg)"});
         break;
 
       case "World":

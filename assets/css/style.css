@@ -9,6 +9,11 @@ td, th {
   text-align: center;
 }
 
+.header {
+  font-family: 'Cinzel Decorative', cursive;
+  text-shadow: 2px 2px #d59563;
+}
+
 .result-list {
   cursor: pointer;
 }
@@ -38,7 +43,7 @@ td, th {
   text-decoration:none;
 }
 
-.ticket-table, .ticket-header, .venues-and-dates {
+.ticket-header, .venues-and-dates {
   text-align: center !important;
 }
 
@@ -126,6 +131,19 @@ i#search-button:hover {
   border-right: 2px ridge;
   border-left: 2px ridge;
   border-color: #d59563;
+}
+
+#copyright-data {
+  background-color: #242f3e;
+  color: #d59563;
+  font-size: 10px;
+  line-height: 20px;
+  text-align: center;
+  height: 20px;
+  vertical-align: bottom;
+  position: relative;
+  top: 500px;
+  z-index: 3;
 }
 
 #wrapper-init {
