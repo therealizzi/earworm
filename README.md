@@ -4,7 +4,7 @@
 
 Thank you for checking out EarWorm! If this document does not satisfy your curiosity about this project, please visit the website, the source code, or contact a member of the project team.
 
-<strong>Description:</strong> Users can enter the song lyrics stuck in their head, and our site will return the best match for that song (using MusicXMatch), display the lyrics of the song (using Wikipedia), show results for any upcoming shows for that artist - with a link to buy tickets (using Bands in Town), and then map the locations of the concert venues (using Google Maps).
+<strong>Description:</strong> Users can enter the song lyrics stuck in their head, and our site will return the best match for that song (using MusicXMatch), display the lyrics of the song (using MusicXMatch), show informational links for the artist (using Wikipedia), display a picture of the artist (using audioscrobbler), show results for any upcoming shows for that artist - with a link to buy tickets (using Bands in Town), and then map the locations of the concert venues (using Google Maps).
 
 <li>This README will cover:
    <p></p>
@@ -20,7 +20,7 @@ Thank you for checking out EarWorm! If this document does not satisfy your curio
 
 <strong>Background:</strong> This project was assigned to our team on a quick turn-around deadline (2 weeks). We were a newly formed team that did not have any prior experience working together. We were tasked with creating a user-input-based application, but we were given total freedom in terms of direction and purpose. 
 
-The assignment required we met the following specifications:
+The assignment required that we meet the following specifications:
 
 - Must use at least two APIs
 - Must use AJAX to pull data
@@ -97,15 +97,16 @@ EarWorm is primarily written in JavaScript, with dynamic HTML & CSS. The styling
     
 <Frameworks> Materialize
     
-<APIs> CORS-Anywhere-Heroku, MusixMatch, BandsInTown, Google Maps & Wikipedia
+<APIs> CORS-Anywhere-Heroku, MusixMatch, BandsInTown, Google Maps, Wikipedia & Audioscrobbler
 
 The APIs run in a sequential fashion like such:
 <p></p>
 <ul>User Input: lyric/song/artist > </ul>
-<ul>MusixMatch: finds the song and band > </ul>
+<ul>MusixMatch: finds the song, band and lyrics > </ul>
 <ul>BandsInTown: finds the band's touring schedule and available tickets > </ul> 
 <ul>Google Maps: plots the upcoming tour venues in a nifty visual > </ul> 
 <ul>Wikipedia: provides content about the band > </ul>
+<ul>Audioscrobbler: provides a band photo> </ul>
 <ul>And CORS-Anywhere... well, let's just say there's some magic going on there. </ul>
 
  --------------------------------------------------------------------------------------------------------------------------------------
