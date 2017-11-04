@@ -799,26 +799,36 @@ $(window).on( "load", function() {
     }).done(function(response){
       console.log(response);
       var myLen = response.query.search.length; //not necessary
-      for (var i = 0; i < myLen; i++){
+      $("#artist_info").append("<div id='artist_info_cards' class='row'></div>");
+      for (var i = 0; i < 3; i++){
         var myLookup = response.query.search[i];
         var myTitle = myLookup.title;
         var link = (myTitle).replace(/ /g,"_");
-        var tempAnchor = $("<a>");
-        tempAnchor.attr({
-          href: "https://en.wikipedia.org/wiki/"+link,
-          target: "_blank"
-        });
-        tempAnchor.html(myTitle);
-        $("#artist_info").append(tempAnchor);
-        $("#artist_info").append("<br />");
-        $("#artist_info").append(myLookup.snippet + "<br />");
+        $("#artist_info_cards").append("<div class='col s4 m4 l4'>"
+          +  "<div class='card cardColor'>"
+          +    "<div class='card-content white-text cardHeight'>"
+          +      "<span id='myCard-0"+ i +"' class='card-title'>"
+          +         myTitle
+          +      "</span>"
+          +      "<p>" 
+          +        myLookup.snippet + "..." 
+          +      "</p>"
+          +    "</div>"
+          +    "<div class='card-action'>"
+          +      "<a href='https://en.wikipedia.org/wiki/" + link +"' target='_blank'>"
+          +        "Click for Wiki Info"
+          +      "</a>"
+          +    "</div>"
+          +  "</div>"
+          +"</div>"
+          );  
       }
     });
   }
 
   var artistInfoSearch = function(myArtist) {
     $("#artist_info").empty();
-    $("#artist_info").append("<h3 class='header pull-l4'>Artist Information</h3>");
+    $("#artist_info").append("<h3 class='header pull-l4'>Related Information</h3>");
     var baseURL =  "http://ws.audioscrobbler.com/2.0/"; // add ?method=artist.getinfo&artist=
     var api_key = "c3e14eca8563f82a1805f30ced79d395"; //param: &api_key=
     //&format=json
@@ -832,7 +842,7 @@ $(window).on( "load", function() {
         var artName = response.results.artistmatches.artist[0].name;
         var lastImgIndex = response.results.artistmatches.artist[0].image.length - 1;
         var artImg = response.results.artistmatches.artist[0].image[lastImgIndex]["#text"];
-        $("#artist_info").append("<h5>Name: " + artName + "</h5><br>");
+        //$("#artist_info").append("<h5>Name: " + artName + "</h5><br>");
         $("#artists_img").attr("src",artImg);
         $('.parallax').parallax();
       }
