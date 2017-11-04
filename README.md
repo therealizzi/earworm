@@ -75,7 +75,7 @@ Aaaand we pulled the trigger....
 
 As the team was scoping the work, we began by researching topics that were of interest to us individually. Those early discussions resulted in a natural work-flow, as we began to organize ourselves for the technical build-out of EarWorm. It went like this:
 
-From the onset, <strong>Bryan</strong> was interested in music players and Materialize. When the music players didn't pan out (due to issues out of our control), Bryan doubled-down on the Materialize scope and began to dig into the Wikipedia API.
+From the onset, <strong>Bryan</strong> was interested in music players and Materialize. When the music players didn't pan out (due to issues out of our control), Bryan doubled-down on the Materialize scope and began to dig into the Wikipedia and last-FM APIs.
 
 Pursuing his interests in live concerts, <strong>Raf</strong> took on the BandsInTown interface, and contacted the company by email to request API access. Once granted, he coded the AJAX for the BIT API and also integrated CORS-anywhere (a critical piece of EarWorm's technology)
 
@@ -106,6 +106,7 @@ The APIs run in a sequential fashion like such:
 <ul>BandsInTown: finds the band's touring schedule and available tickets > </ul> 
 <ul>Google Maps: plots the upcoming tour venues in a nifty visual > </ul> 
 <ul>Wikipedia: provides content about the band > </ul>
+<ul>last-fm: provides a photo of the band > </ul>
 <ul>Audioscrobbler: provides a band photo> </ul>
 <ul>And CORS-Anywhere... well, let's just say there's some magic going on there. </ul>
 
