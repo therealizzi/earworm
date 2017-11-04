@@ -785,21 +785,39 @@ $(window).on( "load", function() {
     });
   };
 
-  // bryan's code
+  // Function that provides Related information for selected artist
   var mySearch = function(myArtist) {
 
+    // checks document width and assigns the appropriate number to variable
+    var myLen = $(document).width() <= 600 ? 2 : 3;
+
+    // Request URL for ajax call
     var myUrl = "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch="+ myArtist +" music&utf8=&format=json"
 
+    // ajax call
     $.ajax({
       url: myUrl,
       method: "GET"
+
+    // if ajax call is successful then the window populates with related info
     }).done(function(response){
-      var myLen = response.query.search.length; //not necessary
+
+      // append info to container with artist_info id
       $("#artist_info").append("<div id='artist_info_cards' class='row'></div>");
-      for (var i = 0; i < 3; i++){
+      
+      // loop the number of cards based on width of document
+      for (var i = 0; i < myLen; i++){
+
+        // Assigns search object to myLookup
         var myLookup = response.query.search[i];
+
+        // Assigns title of wiki page to myTitle
         var myTitle = myLookup.title;
+
+        // Replaces all spaces within the title with underscores
         var link = (myTitle).replace(/ /g,"_");
+
+        // Appends related info to DOM
         $("#artist_info_cards").append("<div class='col s4 m4 l4'>"
           +  "<div class='card cardColor'>"
           +    "<div class='card-content white-text cardHeight'>"
@@ -817,37 +835,61 @@ $(window).on( "load", function() {
           +    "</div>"
           +  "</div>"
           +"</div>"
-          );  
+        );  
       }
     });
   }
 
+  // Function to provide DOM with image of artist / band
   var artistInfoSearch = function(myArtist) {
+
+    // removes related info for each call
     $("#artist_info").empty();
+
+    // Appends Header tag
     $("#artist_info").append("<h3 class='header pull-l4'>Related Information</h3>");
+    
+    // assigning base URL to baseURL variable
     var baseURL =  "http://ws.audioscrobbler.com/2.0/"; // add ?method=artist.getinfo&artist=
+    
+    // assigns api key to api_key variable
     var api_key = "c3e14eca8563f82a1805f30ced79d395"; //param: &api_key=
-    //&format=json
+
+    // assigns necessary information for request
     var queryURL = baseURL + "?method=artist.search&artist=" + globalArtist + "&api_key=" + api_key+
       "&format=json";
+    
+    // ajax call
     $.ajax({
       url: queryURL,
       method: 'GET',
+
+      // callback function executed if request was successful
       success: function(response){
+
+        // Name of the artist
         var artName = response.results.artistmatches.artist[0].name;
+        
+        // assigns the last image in the JSON file
         var lastImgIndex = response.results.artistmatches.artist[0].image.length - 1;
+        
+        // assigns image URL
         var artImg = response.results.artistmatches.artist[0].image[lastImgIndex]["#text"];
-        //$("#artist_info").append("<h5>Name: " + artName + "</h5><br>");
+        
+        // Sets the SRC attribute with the artist image in the container with artists_img id
         $("#artists_img").attr("src",artImg);
         $('.parallax').parallax();
       }
-    })
+    });
   }
+
+  // Event Listener for click on brand logo 'EarWorm'
   $(".brand-logo").on("click", function(){
-        //hide search page
+    
+    //hide search page
     $("#wrapper-init").css("display", "block");
 
     //show main page
     $("#wrapper-main").css("display", "none");
-  })
+  });
 });
