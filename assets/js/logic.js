@@ -818,7 +818,7 @@ $(window).on( "load", function() {
         var link = (myTitle).replace(/ /g,"_");
 
         // Appends related info to DOM
-        $("#artist_info_cards").append("<div class='col s4 m4 l4'>"
+        $("#artist_info_cards").append("<div class='col s6 m4 l4'>"
           +  "<div class='card cardColor'>"
           +    "<div class='card-content white-text cardHeight'>"
           +      "<span id='myCard-0"+ i +"' class='card-title'>"
