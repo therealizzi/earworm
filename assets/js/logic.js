@@ -118,7 +118,6 @@ $(window).on( "load", function() {
           var trackGenre = "none";
         }
         
-        console.log("Track Genre-" + i + ":" + trackGenre);
 
         //creating a song object to hold data
         var tempSongObj = new songObject(songTitle,albumTitle,artistName,trackID,trackGenre);
@@ -165,7 +164,6 @@ $(window).on( "load", function() {
     //remove featured artists, trim down to main artist
     tempMatch = (tempMatch.split(" feat.", 1));
 
-    console.log(tempMatch);
     return tempMatch;
 
   }
@@ -178,7 +176,7 @@ $(window).on( "load", function() {
 
     //reset table headers
     $("#song-list-hdr").empty();
-    $("#song-list-hdr").append("<tr><th>Song</th><th>Album</th><th>Artist</th></tr>");
+    $("#song-list-hdr").append("<tr class='table-header'><th>Song</th><th>Album</th><th>Artist</th></tr>");
 
     //loop through array of song objects
     for (var i = 0; i < songArray.length; i++) {
@@ -406,7 +404,6 @@ $(window).on( "load", function() {
     
     return tempString.trim();
 
-    console.log(tempString);
   }
 
   //event listener on the search button -- in search bar (main and mobile)
@@ -691,7 +688,7 @@ $(window).on( "load", function() {
     $("#ticket-header").empty();
 
     // Append Headers to table //
-    $("#ticket-header").append(" <th>Show Date</th><th>Venue Name</th><th>Ticket Link</th>")
+    $("#ticket-header").append("<tr class='table-header'><th>Show Date</th><th>Venue Name</th><th>Ticket Link</th></tr>")
 
     // Calls the function above to reset previous search results //
     resetBITSearch();
@@ -797,7 +794,6 @@ $(window).on( "load", function() {
       url: myUrl,
       method: "GET"
     }).done(function(response){
-      console.log(response);
       var myLen = response.query.search.length; //not necessary
       $("#artist_info").append("<div id='artist_info_cards' class='row'></div>");
       for (var i = 0; i < 3; i++){
@@ -838,7 +834,6 @@ $(window).on( "load", function() {
       url: queryURL,
       method: 'GET',
       success: function(response){
-        console.log(response);
         var artName = response.results.artistmatches.artist[0].name;
         var lastImgIndex = response.results.artistmatches.artist[0].image.length - 1;
         var artImg = response.results.artistmatches.artist[0].image[lastImgIndex]["#text"];
